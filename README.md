@@ -40,7 +40,7 @@ The most important V3 changes are:
 + <b>Startup WiFi configuration:</b> settings can be changed in a browser during a short startup window. This replaces the older Android companion app approach.
 + <b>ESP32S3 focus:</b> the recommended board is the Seeed Studio XIAO ESP32S3 because it is small, low cost and has comfortable memory headroom for BLE, WiFi configuration, display handling and lifter control.
 
-More technical details are collected in [What is new in V3](whatsNew-V3.md).<br>
+More technical details are collected in [What is new in V3](docs/whatsNew-V3.md).<br>
 
 # The Simcline-V3 design separates completely:
 + presentation (display types/properties)
