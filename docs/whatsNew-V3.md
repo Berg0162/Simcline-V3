@@ -60,17 +60,16 @@ This makes Simcline-V3 independent of an Android APK and easier to configure
 from any phone, tablet, or computer with a browser.
 
 ## Recommended Hardware
-<img src="../images/XIAO_ESP32S3.png" width="200" height="200" ALIGN="left" alt="XIAO ESP32S3">
-The preferred board for Simcline-V3 is the **Seeed Studio XIAO ESP32S3**.
-<br clear="left"> <br>
-It is currently the best fit for this project because it is:
 
-- low cost
-- very small
+The preferred board for Simcline-V3 is the **Seeed Studio XIAO ESP32S3**.<br>
+<img src="../images/XIAO_ESP32S3.png" width="200" height="200" ALIGN="left" alt="XIAO ESP32S3">
+It is currently the best fit for this project because it is:
+- low cost small powerhouse
 - widely available
 - based on ESP32-S3
 - equipped with enough memory headroom for NimBLE, the display layer, the lifter
   control task, and the startup WiFi configuration portal
+<br clear="left">
 
 In Simcline-V2 the Adafruit Feather ESP32 V2 was a very good default choice.
 For Simcline-V3, the XIAO ESP32S3 is the stronger recommendation. Some newer
