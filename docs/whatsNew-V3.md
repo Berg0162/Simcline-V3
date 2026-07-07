@@ -60,9 +60,9 @@ This makes Simcline-V3 independent of an Android APK and easier to configure
 from any phone, tablet, or computer with a browser.
 
 ## Recommended Hardware
-
+<img src="./images/XIAO_ESP32S3.png" width="200" height="200" ALIGN="left" alt="XIAO ESP32S3">
 The preferred board for Simcline-V3 is the **Seeed Studio XIAO ESP32S3**.
-
+<br clear="left"> <br>
 It is currently the best fit for this project because it is:
 
 - low cost
