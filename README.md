@@ -103,7 +103,7 @@ To run the optional Virtual Shifting BLE Service, **Simcline-V3** needs installa
   - [uleb128](https://github.com/bolderflight/uleb128)
 
 # Man-In-The-Middle (MITM) software pattern<br>
-<img src= "./images/FTMS_MITM.jpg" align="left" width="1000" height="500" alt="Man in the Middle"><br>
+<img src= "./images/MITM_Parties_Explained.png" align="left" width="1000" height="500" alt="Man in the Middle"><br>
 <b>Man-In-The-Middle</b> is a powerful software engineering pattern that is applied in many software designs. Unfortunately it is also known for a negative application in communication traffic: MITM is a common type of cybersecurity attack that allows attackers to eavesdrop on the communication between two targets.
 We have applied the very principle: the Simcline is strategically positioned in between the BLE communication of the Smart Trainer and the training App (like Zwift) running on the PC/Laptop. All communication traffic can be inspected in that MITM position, while it is passed on from one side to the other, in both directions. When Zwift sends resistance information (like the road inclination) to the Smart trainer, this information can be intercepted and applied to determine the up/down positioning of the Simcline. <br>
 
@@ -132,7 +132,7 @@ I can understand and respect that you have some reserve: Is this really working 
 In the Simcline-V3 Library <b>Examples</b> section you will find the applications for testing and running SIMCLINE that come with the library. The one you should start with is <b>Smart-MITM</b>. It is developed to check whether the MITM solution works with your trainer, your training app and your ESP32 board. Within Arduino IDE 2 select on the top bar menu: `File > Examples > Simcline-V3 > Smart-MITM`<br>
 
 <b>What it does in short:</b><br>
-<img src="./images/Feather_FTMS.jpg" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
+<img src="./images/MITM_Concepts_Explained.png" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
 A working <b>MITM</b> implementation links a bike trainer and a PC/Laptop/Tablet running Zwift or another training app with the XIAO ESP32S3, like a <b>bridge</b> in between. The MITM bridge can pass on, inspect, control, filter or alter the interchanged traffic data! The <b>MITM</b> test code is fully ignorant of the mechanical or electronic components that drive the Simcline construction.<br>
 ```
 It simply establishes a virtual BLE bridge and allows you to ride the bike on the Smart Trainer and 
