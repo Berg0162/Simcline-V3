@@ -92,6 +92,18 @@ Simcline-V3 <b>WiFi Portal</b> configuration options:
 
 // AP SSID used by the startup configuration portal.
 const char CONFIG_PORTAL_APPNAME[] PROGMEM = "SimclineCfg";
+
+// Enable automatically for newer ESP32 targets that are better suited to
+// combining WiFi, NimBLE, and display code. Keep classic ESP32 excluded unless
+// explicitly force-enabled above because it has shown IRAM overflow here.
+#if defined(CONFIG_IDF_TARGET_ESP32S3) || \
+    defined(CONFIG_IDF_TARGET_ESP32C3)  || \
+    defined(CONFIG_IDF_TARGET_ESP32C5)  || \
+    defined(CONFIG_IDF_TARGET_ESP32C6)  || \
+    defined(CONFIG_IDF_TARGET_ESP32C61)
+#define ENABLE_CONFIG_PORTAL
+#endif
+
 ```
 
 # configDebug.h
