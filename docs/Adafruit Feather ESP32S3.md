@@ -24,7 +24,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 ## Arduino IDE 2.x
-The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32S3</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32S3](https://learn.adafruit.com/adafruit-esp32-feather-v2/arduino-ide-setup)<br>
+The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32S3</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32S3](https://learn.adafruit.com/adafruit-esp32-s3-feather))<br>
 
 ## Before you start
 If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>Adafruit Feather ESP32S3</b> processor and the project are the following:
