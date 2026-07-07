@@ -78,6 +78,22 @@ Simcline-V3 <b>Mechanical SIMCLINE 2.0</b> configuration options:
 ```
 <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
+# configPortal.h
+Simcline-V3 <b>WiFi Portal</b> configuration options:
+```C++
+// Enable the startup WiFi configuration portal only on builds that have enough
+// IRAM headroom for WiFi + NimBLE. Classic ESP32 builds can overflow IRAM with
+// the current MITM feature set, even with a minimal WiFiServer portal.
+//
+// Uncomment to force-enable after testing the selected board/core combination.
+//#define ENABLE_CONFIG_PORTAL
+
+#include "config/configBoard.h"
+
+// AP SSID used by the startup configuration portal.
+const char CONFIG_PORTAL_APPNAME[] PROGMEM = "SimclineCfg";
+```
+
 # configDebug.h
 Simcline-V3 has a fine-grained scheme for allowing debug-messages during operation. Every `/src/<file name>.cpp` has its own <b>#define DEBUG</b> at the beginning of the code that can be (un)commented (switched on or off) discretionary. However, when one reaches the state that debugging has no longer a purpose, you want to get rid of all the overhead (processor load) and optimise for speed. This `configDebug.h` allows you to switch OFF in one place <b>all Simcline-V3 debugging messages</b> with one <b>master switch</b>.<br>
 Simcline-V3 <b>Debug</b> configuration options:
