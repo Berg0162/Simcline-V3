@@ -6,8 +6,10 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the board here, that is part of your system setup
+//#define XIAO_ESP32S3
 //#define LILYGO_T_DISPLAY_S3
-#define ADAFRUIT_FEATHER_ESP32_V2
+#define ADAFRUIT_FEATHER_ESP32S3
+//#define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
 2) Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configDisplay.h`<br>
@@ -27,11 +29,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32S3</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32S3](https://learn.adafruit.com/adafruit-esp32-s3-feather))<br>
 
 ## Before you start
-If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>Adafruit Feather ESP32S3</b> processor and the project are the following:
-<p align=center>
-<img src="../images/Feather_ESP32_V2_Tools_Settings.jpg" align="left" width="400" height="650" alt="Feather ESP32S3 Tools Menu">
-</p>
-<br clear="left">
+Select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the specific type of your <b>Adafruit Feather ESP32S3</b> processor!
 
 # Feather ESP32S3 pinout
 
