@@ -8,7 +8,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 // Define the board here, that is part of your system setup
 //#define XIAO_ESP32S3
 //#define LILYGO_T_DISPLAY_S3
-#define ADAFRUIT_FEATHER_ESP32S3
+#define ADAFRUIT_Feather_ESP32_S3
 //#define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
