@@ -56,7 +56,7 @@ Benefits of this Approach:
 As a result the Arduino ino-files that the user will access, in the `Simcline-V3/examples` folder, are very concise in comparison with the old code files. <br>
 
 # Simcline-V3 has central configuration
-All configuration settings have been gathered in one `src/config` directory inside the installed Simcline-V3 library folder. This includes <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V3 Configuration](src/config/README.md)<br>
+All configuration settings have been gathered in one `src/config` directory inside the installed Simcline-V3 library folder. This includes <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>-, <b>Portal</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V3 Configuration](src/config/README.md)<br>
 
 # NimBLE-Arduino 2.x
 The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero/NimBLE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V3 works only (!) with the latest version: <b>NimBLE-Arduino Version 2.x</b>!<br>
