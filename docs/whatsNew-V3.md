@@ -131,7 +131,7 @@ Important components:
   Holds operational state, device addresses, grade updates, user preferences,
   NVS storage, and conversion from road grade to lifter target position.
 
-- `ConfigPortal`  
+- `WebConfigPortal`  
   Provides the temporary startup WiFi configuration interface.
 
 - `Presentation`, `display/`, and `board/`  
