@@ -208,6 +208,22 @@ A recipe for success: follow <b>ALWAYS</b> the instructions and procedure at the
  *  
 */ 
 ```
+## WiFi Portal and BLE Scanning
+
+The startup configuration portal is opened for 60 seconds. During this same
+startup phase Simcline-V3 also scans for the smart trainer.
+
+On ESP32-S3, WiFi and BLE share the same 2.4 GHz radio. While BLE scanning is
+active, the WiFi portal may respond slowly or may not be reachable at all. This
+is expected behavior. In practice the portal becomes reliably accessible after
+the trainer has been found and connected, or after the trainer scan has timed out.
+
+For this reason, if you want to change settings through the browser portal,
+power on Simcline-V3 first and wait until trainer connection has completed, or
+until the trainer scan timeout has passed. The portal remains open during the
+startup window, so there is still time to adjust and save settings before the
+ride begins.
+
 # Points of Interest
 + Be aware of unwanted <b>autoconnect</b> of Zwift with your trainer using ANT+ or BLE Smart before <b>Smart-MITM</b> can establish a connection. Always <b>start</b> Zwift <b>AFTER</b> Smart-MITM and the trainer have connected successfully! If Zwift connects directly to the trainer first, Smart-MITM may fail to connect and the test result is no longer representative. Only one client can control the trainer at the same time: two captains on one ship is a recipe for disaster! See for more info [FAQ #1](docs/Frequently_Asked_Questions.md#1) and [FAQ #6](docs/Frequently_Asked_Questions.md#6)
 + Please write down the presented MAC/Device Addresses of a) your Smart trainer and b) your Desktop/Laptop with Zwift. These show up in the Serial Monitor output when running the Smart-MITM test code. This is for your own convenience since it helps you to identify later both devices by MAC Addresses! Smart-MITM detects the Mac addresses and stores these in ESP32 NVS (Non-Volatile-Storage) for later use to unmistakably establish a BLE connection with the targeted devices. See [FAQ #9](docs/Frequently_Asked_Questions.md#9)
