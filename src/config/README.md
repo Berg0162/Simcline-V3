@@ -88,10 +88,9 @@ Simcline-V3 <b>WiFi Portal</b> configuration options:
 // Uncomment to force-enable after testing the selected board/core combination.
 //#define ENABLE_CONFIG_PORTAL
 
-#include "config/configBoard.h"
-
-// AP SSID used by the startup configuration portal.
-const char CONFIG_PORTAL_APPNAME[] PROGMEM = "SimclineCfg";
+// Access Point SSID and password used by the startup configuration portal.
+#define PORTAL_APPNAME 	"SimclineCfg"
+#define PORTAL_PASSWORD "12345678"
 
 // Enable automatically for newer ESP32 targets that are better suited to
 // combining WiFi, NimBLE, and display code. Keep classic ESP32 excluded unless
