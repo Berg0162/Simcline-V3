@@ -193,15 +193,15 @@ A recipe for success: follow <b>ALWAYS</b> the instructions and procedure at the
  *  3) Start/Power On the Indoor Trainer  
  *  4) Your ESP32 and Trainer will pair as reported in the output
  *  5) Start Zwift on your computer or tablet and wait....
- *  6) Search on the Zwift pairing screens for your ESP32 a.k.a. <SIM32>
- *  7) Pair: Power Source, Resistance and Cadence one after another with <SIM32>
+ *  6) Search on the Zwift pairing screens for your ESP32 a.k.a. SIM32
+ *  7) Pair: Power Source, Resistance and Cadence one after another with SIM32
  *  8) Optionally one can pair as well devices for heartrate and/or steering (Sterzo)
  *  9) Start the default Zwift ride or any ride you wish
  * 10) Make Serial Monitor output window visible on top of the Zwift window 
  * 11) Hop on the bike: do the work and feel resistance change with the road
  * 12) Inspect the info presented by Serial Monitor.....
  *  
- *   This device is identified with the name <SIM32>. You will see this only when connecting to Zwift on the 
+ *   This device is identified with the name SIM32. You will see this only when connecting to Zwift on the 
  *   pairing screens! Notice: Zwift extends device names with additional numbers for identification!
  *  
 */ 
