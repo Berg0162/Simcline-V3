@@ -10,8 +10,8 @@ Since this ANT+ connection enables control of the physical device (trainer) ther
 If this case, unfortunately and undesirebly, happens with your equipment setup, the controlling Client-side code will not connect or disconnect with an error message! So keep these worlds separated! If you intend to use devices with BLE and FTMS: mechanically disconnect the ANT+ dongle to avoid your controller App (like Zwift) to (auto)connect over ANT+.
 
 # [3]
-<b>What about Zwift Hub and Jetblack users?</b><br>
-+ There is an excellent review available [DCRainmaker Zwift Hub review](https://www.dcrainmaker.com/2022/10/zwift-hub-smart-trainer-in-depth-review-the-best-bang-for-your-buck.html), that describes o.a. a special goodie that comes with the Zwift Hub and Jetblack:
+<b>What about Zwift Hub One and Jetblack users?</b><br>
++ There is an excellent review available [DCRainmaker Zwift Hub review](https://www.dcrainmaker.com/2022/10/zwift-hub-smart-trainer-in-depth-review-the-best-bang-for-your-buck.html), that describes o.a. a special goodie that comes with the Zwift Hub One and Jetblack:
 >**– Protocol Compatibility:** ANT+ FE-C, ANT+ Power, Bluetooth Smart Trainer Control, Bluetooth Smart Power (everything you need)<br>
 **– Unique Party Trick: Can rebroadcast your heart rate sensor within a single channel, ideal for Apple TV Zwift users (who are Bluetooth channel limited)**<br>
 **– App Compatibility:** Every app out there basically (Zwift, TrainerRoad, Rouvy, RGT, The Sufferfest, Kinomap, etc…)<br>
@@ -33,11 +33,11 @@ Next time you go for a Zwift ride:
 - Pair your devices
  
 # [5]
-<b>How does Simcline-V3 utilize the Dual Processor capacities of the ESP32?</b><br>
-+ One of the advantages of the ESP32 platform is the fact that the ESP32 WROOM processor has two cores. This makes it possible to precisely balance the load of a program over 2 processor cores. With the mechatronic Simcline setup this is particular usefull for the motor control of the actuator and the BLE MITM traffic, heavily leaning on the NimBLE-Arduino library. <br>
+<b>How does Simcline-V3 utilize the Dual Processor capacities of the ESP32-S3?</b><br>
++ One of the advantages of the ESP32-S3 platform is the fact that the ESP32-S3 Tensila processor has two cores. This makes it possible to precisely balance the load of a program over 2 processor cores. With the mechatronic Simcline setup this is particular usefull for the motor control of the actuator and the BLE MITM traffic, heavily leaning on the NimBLE-Arduino library. <br>
 During operation Zwift sends (about every 800 ms) new settings, and one of these is the grade value (road inclination in degrees). Simcline-V3 translates the grade to a level that should be reached by the actuator to simulate exactly the road grade that was received from Zwift. However, the actuator can only be switched to <b>move up</b>, <b>move down</b> or <b>stop</b>. After having set the actuator to move (up or down), the program has to check continuously if the actuator has reached the desired level by reading its position with the help of the Time-Of-Flight sensor and act accordingly. To avoid conflicts during variable updates (i.c. TargetPosition) a Binary Semaphore scheme is applied to protect <b>task shared variables</b> during an update and presentation. <br>
 Meanwhile the trainer sends all your cycling data (CPS, CSC, FTMS and optional HRM) 4-5 times per second over BLE MITM channels. The Zwift app has to confirm the receipt of several of these data. Vice versa, the (virtual ride) data sent by Zwift have to be tranferred to the trainer and also the trainer has to confirm the receipt of several of these data. Simcline-V3, being a BLE MITM, handles a huge amount of BLE traffic per second and it does not allow for mistakes! <br>
-The load of Simcline-V3 is balanced over 2 processor cores of the ESP32 processor: <br>
+The load of Simcline-V3 is balanced over 2 processor cores of the ESP32-S3 processor: <br>
 <b>On Core 0</b>: exclusively all the BLE handling (NimBLE-Arduino) <br>
 <b>On Core 1</b>: the critical control of the actuator, presentation (display) and other small tasks. <br>
 
@@ -47,18 +47,18 @@ The load of Simcline-V3 is balanced over 2 processor cores of the ESP32 processo
 
 0) The Start or Initial situation of <b>ALL</b> parties involved is: Laptop/Zwift, Simcline and Trainer are Powered <b>OFF</b>!
 1) Trainer Power-ON --> Trainer needs some time (4 seconds?) to settle and start advertising!
-2) Power-ON or Reset Simcline (ESP32 board) --> Simcline needs some time to start, test motor functions and start scanning for Trainer!
+2) Power-ON or Reset Simcline (ESP32-S3 board) --> Simcline needs some time to start, test motor functions and start scanning for Trainer!
 3) Wait for Simcline and Trainer to connect! 9 Out of 10 times this is immediately successful. If this is NOT the case then Reset Simcline first and wait again for a Simcline-Trainer connection! If this is NOT successful: Read [FAQ #1](https://github.com/Berg0162/Simcline-V3/blob/main/docs/Frequently_Asked_Questions.md#1), take appropriate measures and than go back to "Start" after <b>ALL</b> components have been Powered <b>OFF</b> first.
 4) Laptop/Zwift Power-ON --> ONLY when Simcline and Trainer have been connected successfully!
 5) Wait and wait for the Zwift pairing window to pop-up
-6) Click orange POWER SOURCE button and select in the list with devices: ESP32#### (Simcline) --> Close
-7) Click orange RESISTANCE button and select in the list with devices: ESP32#### (Simcline) --> Close
-8) Click orange CADENCE button and select in the list with devices: ESP32#### (Simcline) --> Close
+6) Click orange POWER SOURCE button and select in the list with devices: ESP32 (Simcline) --> Close
+7) Click orange RESISTANCE button and select in the list with devices: ESP32 (Simcline) --> Close
+8) Click orange CADENCE button and select in the list with devices: ESP32 (Simcline) --> Close
 9) Click orange OK! button, when all the selected devices are conforming your choices and are indicated as <b>CONNECTED</b>!
 
 # [7]
-<b>Will Simcline-V3 work out-of-the-box with my ESP32S3 development board?</b><br>
-+ Yes, in most cases, when we assume your ESP32S3 has enough Flash and PSRAM memory on board. Particularly when you <b>restrict</b> (!) your attention initially to the <b>Smart-MITM</b> application, to check out if the concept is working with your hardware.<br>
+<b>Will Simcline-V3 work out-of-the-box with my ESP32-S3 development board?</b><br>
++ Yes, in most cases, when we assume your ESP32-S3 has enough Flash and PSRAM memory on board. Particularly when you <b>restrict</b> (!) your attention initially to the <b>Smart-MITM</b> application, to check out if the concept is working with your hardware.<br>
 If you want finally a full blown working SIMCLINE setup, you have to <b>complement</b> the concrete ESP32board class in the file: `/documents/arduino/libraries/Simcline-V3/src/board/YOUR_ESP32_Board.h`. It needs minimally definitions for the PIN assignments: TOF-sensor (I2C), DRV8871 Motor Driver board (Actuator) and optionally for 2 Buttons. Possibly you have to insert code for specific board initialization (not shown).<br>
 ```C++
 #define PIN_ACTUATOR_1 	-1  // PIN to be connected to pin IN2 of the Adafruit DRV8871 Motor Driver board
@@ -85,7 +85,7 @@ In conclusion when you see different road grade values in the Zwift window compa
 
 # [9]
 <b>How to (later) manage (changed) Device MAC Addresses?</b> <br>
-When you run <b>Smart-MITM</b>, it is instructed to detect and store in ESP32 NVS (Non-Volatile-Storage) the MAC addresses for Trainer and Laptop. These stored MAC addresses are used by <b>Smart-Simcline</b> to unmistakenly connect to the right client and server! If you want to check or eventually change the MAC addresses in NVS (because of changing devices) you will find in `Simcline-V3/examples` a tool <b>Test_Board_plus_NVS</b> that will help with the task! Notice that MAC addresses have to be a) <b>correct</b> and b) in <b>right format</b> to be resolved at connection-time!<br>
+When you run <b>Smart-MITM</b>, it is instructed to detect and store in ESP32-S3 NVS (Non-Volatile-Storage) the MAC addresses for Trainer and Laptop. These stored MAC addresses are used by <b>Smart-Simcline</b> to unmistakenly connect to the right client and server! If you want to check or eventually change the MAC addresses in NVS (because of changing devices) you will find in `Simcline-V3/examples` a tool <b>Test_Board_plus_NVS</b> that will help with the task! Notice that MAC addresses have to be a) <b>correct</b> and b) in <b>right format</b> to be resolved at connection-time!<br>
 The second option with permanent result, is to insert <b>defines</b> for Laptop and Trainer addresses in the `configNimBLE.h`.
 + Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configNimBLE.h`<br>
 Look for the following section:
