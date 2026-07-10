@@ -58,7 +58,7 @@ The load of Simcline-V3 is balanced over 2 processor cores of the ESP32-S3 proce
 
 # [7]
 <b>Will Simcline-V3 work out-of-the-box with my ESP32-S3 development board?</b><br>
-+ Yes, in most cases, when we assume your ESP32-S3 has enough Flash and PSRAM memory on board. Particularly when you <b>restrict</b> (!) your attention initially to the <b>Smart-MITM</b> application, to check out if the concept is working with your hardware.<br>
++ Yes, in most cases, when we assume your ESP32-S3 has **4-8 MB Flash** on board and PSRAM memory is optional. Particularly when you <b>restrict</b> (!) your attention initially to the <b>Smart-MITM</b> application, to check out if the concept is working with your hardware.<br>
 If you want finally a full blown working SIMCLINE setup, you have to <b>complement</b> the concrete ESP32board class in the file: `/documents/arduino/libraries/Simcline-V3/src/board/YOUR_ESP32_Board.h`. It needs minimally definitions for the PIN assignments: TOF-sensor (I2C), DRV8871 Motor Driver board (Actuator) and optionally for 2 Buttons. Possibly you have to insert code for specific board initialization (not shown).<br>
 ```C++
 #define PIN_ACTUATOR_1 	-1  // PIN to be connected to pin IN2 of the Adafruit DRV8871 Motor Driver board
