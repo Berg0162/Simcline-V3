@@ -64,7 +64,7 @@ from any phone, tablet, or computer with a browser.
 The preferred board for Simcline-V3 is the **Seeed Studio XIAO ESP32-S3**.<br>
 <img src="../images/XIAO_ESP32S3.png" width="200" height="200" ALIGN="left" alt="XIAO ESP32-S3">
 It is currently the best fit for this project because it is:
-- low cost small powerhouse
+- low cost small powerhouse [Webshop](https://www.tinytronics.nl/en/development-boards/microcontroller-boards/with-wi-fi/seeed-studio-xiao-esp32-s3)
 - widely available
 - based on ESP32-S3
 - equipped with enough memory headroom for NimBLE, the display layer, the lifter
