@@ -58,8 +58,8 @@ A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This
 - Internal SRAM: 512 KB
 - Connectivity: Wi-Fi 4 (2.4 GHz) + Bluetooth LE
 
-Both boards will work (not tested) with an app partition scheme of at least **3 MB**!
-[Adafruit Feather ESP32-S3](https://learn.adafruit.com/adafruit-esp32-s3-feather/overview)) <br>
+For future development with Simcline-V3, you should instead look for an ESP32-S3 board with 8 MB Flash and 8 MB PSRAM (such as your current XIAO ESP32-S3), because neither of these Feather variants provides both large flash and large PSRAM. However, both boards will work (for now but not tested) with an app partition scheme of at least **3 MB**!<br>
+[Adafruit Feather ESP32-S3](https://learn.adafruit.com/adafruit-esp32-s3-feather/overview)
 
 <b>OLED display blue/white 128x64 pixels (0,96 Inch, I2C)</b><br>
 Small display board has a critical overall board size of 25 mm * 27 mm (!); (See for example: [Webshop](https://www.gadgetbouw.nl/shop/0-96inch-128x64-i2c-oled-scherm-ssd1306-wit-of-blauw)). Display area itself is: 25 mm x 14 mm. Shows cycling data and diagnostic info that is gathered during operation by the Feather ESP32 to inform the SIMCLINE user about relevant information. NOTICE: a) Many different formfactors are offered at webshops; b) Install Vertical Through Hole Male PCB Header Pins on the board; this will allow correct mounting of the board inside the components box!<br>
