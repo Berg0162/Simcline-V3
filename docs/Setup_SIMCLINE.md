@@ -2,9 +2,9 @@
 # Setup SIMCLINE following these steps:
 
 # Independently of the Simcline-V3 library 
-First test the ESP32 board of your choice with the display attached to it, after you have installed Arduino IDE 2 and the appropriate graphics libraries (like Adafruit GFX and/or TFT_eSPI). Notice that you have to install the original libraries and not the modified versions that product suppliers like to include! All graphics libraries come with code examples and test these. For TFT_eSPI you need to set your display in "User_Setup_Select.h" <b>first</b> to comply with the board/display type you use. Read and study the instructions that come with the sites of these libraries! Only when you have a working combination continue...
+First test the ESP32-S3 board of your choice with the display attached to it, after you have installed Arduino IDE 2 and the appropriate graphics libraries (like Adafruit GFX and/or TFT_eSPI). Notice that you have to install the original libraries and not the modified versions that product suppliers like to include! All graphics libraries come with code examples and test these. For TFT_eSPI you need to set your display in "User_Setup_Select.h" <b>first</b> to comply with the board/display type you use. Read and study the instructions that come with the sites of these libraries! Only when you have a working combination continue...
 
-# Setup your ESP32 board for Simcline-V3
+# Setup your ESP32-S3 board for Simcline-V3
 The board and display to work with can be activated in Simcline-V3 with the right settings, see folder: `/Simcline-V3/src/config`<br>
 
 + Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configBoard.h`
@@ -29,13 +29,14 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 //#define SERIALDISPLAY
 // ------------------------------------------------------------------------------------------------
 ```
-+ When you want another board or display than is supplied as standard with Simcline-V3, a proficient programmer/user can implement Concrete Classes for ESP32-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in `/Simcline-V3/examples/Test_Board_plus_Display` to help you with the task!
++ When you want another board or display than is supplied as standard with Simcline-V3, a proficient programmer/user can implement Concrete Classes for ESP32-S3-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in `/Simcline-V3/examples/Test_Board_plus_Display` to help you with the task!
 + <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
-# Attach the TOF-sensor to your ESP32 board (connect wiring) and test
+# Attach the TOF-sensor to your ESP32-S3 board (connect wiring) and test
 First install the <b>VL6180X</b> library in Arduino IDE 2 and the example programs that come with it. Connect using the prescribed wiring scheme depending on the board that you earlier selected: 
-[Seeed Studio XIAO ESP32S3](https://github.com/Berg0162/Simcline-V3/blob/main/docs/XIAO%20ESP32S3%20Sense.md) or
-[Adafruit Feather ESP32 V2](https://github.com/Berg0162/Simcline-V3/blob/main/docs/Adafruit%20Feather%20ESP32-V2.md) or [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V3/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md) <br>
+[Seeed Studio XIAO ESP32-S3](https://github.com/Berg0162/Simcline-V3/blob/main/docs/XIAO%20ESP32S3%20Sense.md) or
+[Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V3/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md) or
+[Adafruit Feather ESP32-S3](https://github.com/Berg0162/Simcline-V3/blob/main/docs/Adafruit%20Feather%20ESP32S3.md) <br>
 Test with the supplier code examples and finally run `/Simcline-V3/examples/Test_Board_plus_VL6180X` to test in the Simcline-V3 environment.
 
 # Attach the Motor Driver board (connect wiring) 
@@ -44,7 +45,7 @@ No library needed for <b>DRV8871</b>, but the supplier will have example code su
 # Connect wiring for power regulator (5V and 12V) and connect the Actuator to the Motor Driver board and test 
 Test the <b>DRV8871 plus Actuator</b> with `/Simcline-V3/examples/Test_Board_plus_DRV8871`.
 
-# Setup and mount Simcline mechanically...
+# Setup and mount SIMCLINEmechanically...
 Actuator attached to the body and powered
 
 # Add the TOF-sensor to the mechanic setup (in the component box)
@@ -85,11 +86,11 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 ```
 <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
-Now you should have a fully equiped and operational SIMCLINE 2 (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
+Now you should have a fully equiped and operational SIMCLINE (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
 It is time to run `/Simcline-V3/examples/Test_Fully_Equiped_Setup`.<br>
 During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `/documents/arduino/libraries/Simcline-V3/src/config/configSimcline.h` ... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
 
-# Open Simcline program, compile and run! 
+# Open examples/Smart-Simcline program, compile and run! 
 SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuator movements with help of the TOF-sensor. It will scan for your trainer and advertise its server-side to be connected to Zwift... from now on it will handle the Bluetooth MITM and translate changing road grades to actuator movements.<br>
 See: [how road grades are handled FAQ #8](Frequently_Asked_Questions.md#8)<br>
 See: [when devices have changed FAQ #9](Frequently_Asked_Questions.md#9)<br>
