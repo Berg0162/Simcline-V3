@@ -61,8 +61,8 @@ from any phone, tablet, or computer with a browser.
 
 ## Recommended Hardware
 
-The preferred board for Simcline-V3 is the **Seeed Studio XIAO ESP32S3**.<br>
-<img src="../images/XIAO_ESP32S3.png" width="200" height="200" ALIGN="left" alt="XIAO ESP32S3">
+The preferred board for Simcline-V3 is the **Seeed Studio XIAO ESP32-S3**.<br>
+<img src="../images/XIAO_ESP32S3.png" width="200" height="200" ALIGN="left" alt="XIAO ESP32-S3">
 It is currently the best fit for this project because it is:
 - low cost small powerhouse
 - widely available
@@ -83,8 +83,8 @@ control pins.
 Previous-generation ESP32 boards may still compile parts of the project, but
 they are not the intended V3 target. In particular, they may not have enough IRAM
 headroom to run the BLE MITM and the WiFi configuration portal in the same
-feature set. On those targets the configuration portal can be dropped at compile
-time.
+feature set. **On those targets the configuration portal can be dropped at compile
+time.**
 
 ## Architecture Overview
 
