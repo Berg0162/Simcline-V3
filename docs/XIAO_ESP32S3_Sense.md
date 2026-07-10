@@ -50,7 +50,7 @@ A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This
 <b>Seeed Studio XIAO ESP32-S3</b><br>
 During years we have gained a lot of experience with the very stable and reliable <b>Seeed Studio XIAO ESP32-S3 Sense</b> - in different projects. Without the video camera the board does not need an extra heatsink is my experience!
 - Powerful MCU Board: Incorporate the ESP32-S3 32-bit, dual-core, Xtensa processor chip operating up to 240 MHz, mounted multiple development ports, Arduino / MicroPython supported
-- Advanced Functionality: intergating additional digital microphone (NOT USED)
+- With Sense extension board: intergating additional digital microphone (NOT USED)
 - Great Memory for more Possibilities: Offer 8MB PSRAM and 8MB FLASH (16MB in Plus version), supporting SD card slot for external 32GB FAT memory (only for XIAO ESP32-S3)
 - Outstanding RF performance: Support 2.4GHz Wi-Fi and BLE dual wireless communication, support 100m+ remote communication when connected with U.FL antenna
 - Thumb-sized Compact Design: 21 x 17.8mm, adopting the classic form factor of XIAO, suitable for space limited projects like wearable devices
