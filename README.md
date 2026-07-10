@@ -20,13 +20,13 @@ Notice that the description on how to build SIMCLINE consists of two parts:
 + <b>Present Simcline-V3 Library</b><br>
  <br>
 
-# Simcline-V3 Library is optimised for ESP32S3 and NimBLE-Arduino 2.x!<br>
-The <b>ESP32S3</b> family contains low-cost, low-power System on a Chip (SoC) microcontrollers developed by Espressif. They combine Wi-Fi, Bluetooth, generous memory options and a dual-core processor. These properties make the ESP32S3 a very attractive choice for the project! See: &nbsp;[FAQ #5](docs/Frequently_Asked_Questions.md#5)<br>
-- The preferred board is the <b>Seeed Studio XIAO ESP32S3 (plus OLED display)</b>. It has been proven to work well for SIMCLINE with the latest library. Due to its thumb-size, it definitely fits in the component box, although it needs some special care to mount it stably. For settings, wiring scheme and more, see: [Seeed Studio XIAO ESP32S3](docs/XIAO_ESP32S3_Sense.md)
+# Simcline-V3 Library is optimised for ESP32-S3 and NimBLE-Arduino 2.x!<br>
+The <b>ESP32-S3</b> family contains low-cost, low-power System on a Chip (SoC) microcontrollers developed by Espressif. They combine Wi-Fi, Bluetooth, generous memory options and a dual-core processor. These properties make the ESP32-S3 a very attractive choice for the project! See: &nbsp;[FAQ #5](docs/Frequently_Asked_Questions.md#5)<br>
+- The preferred board is the <b>Seeed Studio XIAO ESP32-S3 (plus OLED display)</b>. It has been proven to work well for SIMCLINE with the latest library. Due to its thumb-size, it definitely fits in the component box, although it needs some special care to mount it stably. For settings, wiring scheme and more, see: [Seeed Studio XIAO ESP32-S3](docs/XIAO_ESP32S3_Sense.md)
 <br>
 
-Notice that other members of the <b>ESP32S3</b> family can also do the job perfectly, especially when the development boards come with extra flash and PSRAM memory! See: &nbsp;[FAQ #7](docs/Frequently_Asked_Questions.md#7). &nbsp; <br>
-- For example SIMCLINE works successfully with the <b>Lilygo esp32s3 T-Display</b> board, however that Lilygo-board needs another size component box! See: [Lilygo esp32s3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md) for settings, wiring scheme and more.<br> 
+Notice that other members of the <b>ESP32-S3</b> family can also do the job perfectly, especially when the development boards come with extra flash and PSRAM memory! See: &nbsp;[FAQ #7](docs/Frequently_Asked_Questions.md#7). &nbsp; <br>
+- For example SIMCLINE works successfully with the <b>Lilygo ESP32-S3 T-Display</b> board, however that Lilygo-board needs another size component box! See: [Lilygo ESP32-S3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md) for settings, wiring scheme and more.<br> 
 <br>
 
 Simcline-V3 builds on the experience, knowledge and code of Simcline projects since <b>2020</b>. The original Simcline code has been revisited and redesigned for better stability, robustness and modularity. It was transformed to a C++ object model that hides most of Simcline's internal operation from the normal user. The Simcline community is very diverse when it comes to programming skills: many users are enthusiastic cyclists first and programmers second. The present Simcline-V3 library matches this much better! It also supports a greater variety of ESP32 boards and displays.<br>
@@ -39,7 +39,7 @@ The most important V3 changes are:
 + <b>No trainer profile has to be selected before compiling:</b> classic FTMS trainers, trainers with Cycling Power or Speed/Cadence services, Tacx FE-C, Wahoo proprietary control points and Zwift Virtual Shifting can be handled through the same more general MITM architecture.
 + <b>Robust BLE traffic handling:</b> Simcline-V3 has a stronger internal architecture for handling BLE reads, writes, subscriptions, notifications and reconnects. In particular, trainer-control writes from Zwift are queued and forwarded by a dedicated FreeRTOS write bridge, so short bursts of Write With Response and Write Without Response commands can be handled reliably without blocking the BLE callback path. Passive observers can inspect these writes for road-grade information, but the original trainer command is still forwarded unchanged.
 + <b>Startup WiFi configuration:</b> settings can be changed in a browser during a short startup window. This replaces the older Android companion app approach.
-+ <b>ESP32S3 focus:</b> the recommended board is the Seeed Studio XIAO ESP32S3 because it is small, low cost and has comfortable memory headroom for BLE, WiFi configuration, display handling and lifter control.
++ <b>ESP32-S3 focus:</b> the recommended board is the Seeed Studio XIAO ESP32-S3 because it is small, low cost and has comfortable memory headroom for BLE, WiFi configuration, display handling and lifter control.
 
 More technical details are collected in [What is new in V3](docs/whatsNew-V3.md).<br>
 
@@ -124,7 +124,7 @@ Take your time here. Most problems with Arduino projects are caused by one small
 # How to make it work?<br>
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
-+ working XIAO ESP32S3 development board, or another suitable ESP32S3 board, and 
++ working XIAO ESP32-S3 development board, or another suitable ESP32-S3 board, and 
 + working Smart Trainer (see above support list)
 + running Simcline-V3 library and Smart-MITM application.<br>
 
@@ -134,7 +134,7 @@ In the Simcline-V3 Library <b>Examples</b> section you will find the application
 
 <b>What it does in short:</b><br>
 <img src="./images/MITM_Concepts_Explained.png" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
-A working <b>MITM</b> implementation links a bike trainer and a PC/Laptop/Tablet running Zwift or another training app with the XIAO ESP32S3, like a <b>bridge</b> in between. The MITM bridge can pass on, inspect, control, filter or alter the interchanged traffic data! The <b>MITM</b> test code is fully ignorant of the mechanical or electronic components that drive the Simcline construction.<br>
+A working <b>MITM</b> implementation links a bike trainer and a PC/Laptop/Tablet running Zwift or another training app with the XIAO ESP32-S3, like a <b>bridge</b> in between. The MITM bridge can pass on, inspect, control, filter or alter the interchanged traffic data! The <b>MITM</b> test code is fully ignorant of the mechanical or electronic components that drive the Simcline construction.<br>
 ```
 It simply establishes a virtual BLE bridge and allows you to ride the bike on the Smart Trainer and 
 feel the resistance that comes with the route you have chosen, thanks to Zwift.
@@ -143,8 +143,8 @@ The experience should not differ from a normal direct one-to-one connection, Zwi
 Many Bluetooth Smart FTMS indoor trainers expose the rider's efforts in additional BLE services such as Cycling Power (CPS) and Speed & Cadence (CSC). Training apps often expect these services to be present. The Zwift pairing screen is a good example: it can connect Power Source, Resistance and Cadence separately.
 
 Simcline-V3 does not require the user to select these services before compiling. Instead, it first discovers what the trainer actually exposes and then builds a mirrored BLE server from that discovered information.
-+ The client-side (XIAO ESP32S3) scans for a trainer, connects to it, and discovers the trainer's BLE services and characteristics. The <b>Simcline Client</b> is doing that at the left side of the "bridge"!
-+ The Server-side (XIAO ESP32S3) advertises the discovered/mirrored trainer toward training/cycling/game apps like Zwift. To Zwift it should look like the trainer it normally expects to connect to. The <b>Simcline Server</b> is doing that at the right side of the "bridge"!
++ The client-side (XIAO ESP32-S3) scans for a trainer, connects to it, and discovers the trainer's BLE services and characteristics. The <b>Simcline Client</b> is doing that at the left side of the "bridge"!
++ The Server-side (XIAO ESP32-S3) advertises the discovered/mirrored trainer toward training/cycling/game apps like Zwift. To Zwift it should look like the trainer it normally expects to connect to. The <b>Simcline Server</b> is doing that at the right side of the "bridge"!
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
 # Load Smart-MITM application in Arduino IDE 2
@@ -156,8 +156,8 @@ The default Simcline-V3 configuration settings for Smart-MITM when using <b>any 
 + Debug:  <b>Defined</b>
 
 Optionally:
-+ Users with a <b>XIAO ESP32S3</b> can set up their board and display now! See: [Setup XIAO ESP32S3 plus OLED display](docs/XIAO_ESP32S3_Sense.md)
-+ Users with a <b>Lilygo esp32s3 T-Display</b> can set up the board and display now! See: [Setup Lilygo esp32s3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md)<br>
++ Users with a <b>XIAO ESP32-S3</b> can set up their board and display now! See: [Setup XIAO ESP32-S3 plus OLED display](docs/XIAO_ESP32S3_Sense.md)
++ Users with a <b>Lilygo ESP32-S3 T-Display</b> can set up the board and display now! See: [Setup Lilygo ESP32-S3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md)<br>
 <br>
 
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
