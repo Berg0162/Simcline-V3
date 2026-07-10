@@ -20,8 +20,8 @@ Notice that the description on how to build SIMCLINE consists of two parts:
 + <b>Present Simcline-V3 Library</b><br>
  <br>
 
-# Simcline-V3 Library is optimised for ESP32-S3 and NimBLE-Arduino 2.x!<br>
-The <b>ESP32-S3</b> family contains low-cost, low-power System on a Chip (SoC) microcontrollers developed by Espressif. They combine Wi-Fi, Bluetooth, generous memory options and a dual-core processor. These properties make the ESP32-S3 a very attractive choice for the project! See: &nbsp;[FAQ #5](docs/Frequently_Asked_Questions.md#5)<br>
+# Simcline-V3 Library for ESP32-S3 and NimBLE-Arduino 2.x!<br>
+The <b>ESP32-S3</b> family contains low-cost, low-power System on a Chip (SoC) microcontrollers developed by Espressif. They combine WiFi, Bluetooth, generous memory options and a dual-core processor. These properties make the ESP32-S3 a very attractive choice for the project! See: &nbsp;[FAQ #5](docs/Frequently_Asked_Questions.md#5)<br>
 - The preferred board is the <b>Seeed Studio XIAO ESP32-S3 (plus OLED display)</b>. It has been proven to work well for SIMCLINE with the latest library. Due to its thumb-size, it definitely fits in the component box, although it needs some special care to mount it stably. For settings, wiring scheme and more, see: [Seeed Studio XIAO ESP32-S3](docs/XIAO_ESP32S3_Sense.md)
 <br>
 
