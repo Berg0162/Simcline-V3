@@ -37,7 +37,7 @@ The most important V3 changes are:
 + <b>No trainer profile has to be selected before compiling:</b> classic FTMS trainers, trainers with Cycling Power or Speed/Cadence services, Tacx FE-C, Wahoo proprietary control points and Zwift Virtual Shifting can be handled through the same more general MITM architecture.
 + <b>Robust BLE traffic handling:</b> Simcline-V3 has a stronger internal architecture for handling BLE reads, writes, subscriptions, notifications and reconnects. In particular, trainer-control writes from Zwift are queued and forwarded by a dedicated FreeRTOS write bridge, so short bursts of Write With Response and Write Without Response commands can be handled reliably without blocking the BLE callback path. Passive observers can inspect these writes for road-grade information, but the original trainer command is still forwarded unchanged.
 + <b>Startup WiFi configuration:</b> settings can be changed in a browser during a short startup window. This replaces the older Android companion app approach.
-+ <b>ESP32-S3 focus:</b> the recommended board is the Seeed Studio XIAO ESP32-S3 because it is small, low cost and has comfortable memory headroom for BLE, WiFi configuration, display handling and lifter control.
++ <b>ESP32-S3 focus:</b> the recommended board is the Seeed Studio XIAO ESP32-S3 because it is small, low cost and has comfortable memory headroom for BLE, WiFi configuration, display handling and lifter control. [Webshop](https://www.tinytronics.nl/en/development-boards/microcontroller-boards/with-wi-fi/seeed-studio-xiao-esp32-s3)
 
 More technical details are collected in [What is new in V3](docs/whatsNew-V3.md).<br>
 
