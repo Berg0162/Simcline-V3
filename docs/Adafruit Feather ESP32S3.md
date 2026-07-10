@@ -1,6 +1,6 @@
-# <img src="../images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart trainers <br> based on the Adafruit Feather ESP32S3 board with OLED display.
+# <img src="../images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart trainers <br> based on the Adafruit Feather ESP32-S3 board with OLED display.
 
-# Setup Feather ESP32S3 for Simcline-V3
+# Setup Feather ESP32-S3 for Simcline-V3
 The board and display to work with can be activated in Simcline-V3 with the right settings, see folder: <b>/Simcline-V3/src/config</b><br>
 1) Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configBoard.h`
 ```C++
@@ -26,14 +26,14 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 ## Arduino IDE 2.x
-The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32S3</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32S3](https://learn.adafruit.com/adafruit-esp32-s3-feather))<br>
+The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32-S3</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32-S3](https://learn.adafruit.com/adafruit-esp32-s3-feather))<br>
 
 ## Before you start
-Select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the specific type of your <b>Adafruit Feather ESP32S3</b> processor!
+Select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the specific type of your <b>Adafruit Feather ESP32-S3</b> processor!
 
-# Feather ESP32S3 pinout
+# Feather ESP32-S3 pinout
 
-<img src="../images/adafruit_Feather_ESP32S3.png"  alt="Feather ESP32S3 pinout">
+<img src="../images/adafruit_Feather_ESP32S3.png"  alt="Feather ESP32-S3 pinout">
 
 # Electronic Components and Wiring for version 2.0<br>
 
@@ -44,7 +44,7 @@ In this project is choosen for the following 5 compact active components that ar
 A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This board enables the processor to set the Actuator motor in up or down movement. It transforms logical digital levels (Go Up, Go Down and Stop) from the Feather ESP32 to switching of 12 Volt at 3,6 Amperes max., the levels at which the Actuator works. Notice that default the board comes limited to 2,6 Amperes and you need to add a resistor to set for max current level. Install Vertical Through Hole Male PCB Header Pins on the board; this will allow correct mounting of the board inside the components box!<br>
 
 <b>Adafruit ESP32 Feather V2</b><br>
-During a few years now we have gained a lot of experience with the very stable and reliable <b>Adafruit ESP32 Feather V2</b> - with onboard the fabulous ESP32 WROOM module. The ESP32 has both WiFi and Bluetooth Classic/LE support. Compared to the original Feather (Huzzah) with only 4 MB Flash and no PSRAM, the V2 has 8 MB Flash and 2 MB PSRAM. Packed with everything people love about Feathers: built in USB-to-Serial converter, automatic bootloader reset, Lithium Ion/Polymer charger, and just about all of the GPIOs brought out. [Adafruit Feather ESP32S3]([https://learn.adafruit.com/adafruit-esp32-feather-v2]) <br>
+During a few years now we have gained a lot of experience with the very stable and reliable <b>Adafruit ESP32 Feather V2</b> - with onboard the fabulous ESP32 WROOM module. The ESP32 has both WiFi and Bluetooth Classic/LE support. Compared to the original Feather (Huzzah) with only 4 MB Flash and no PSRAM, the V2 has 8 MB Flash and 2 MB PSRAM. Packed with everything people love about Feathers: built in USB-to-Serial converter, automatic bootloader reset, Lithium Ion/Polymer charger, and just about all of the GPIOs brought out. [Adafruit Feather ESP32-S3]([https://learn.adafruit.com/adafruit-esp32-feather-v2]) <br>
 
 <b>OLED display blue/white 128x64 pixels (0,96 Inch, I2C)</b><br>
 Small display board has a critical overall board size of 25 mm * 27 mm (!); (See for example: [Webshop](https://www.gadgetbouw.nl/shop/0-96inch-128x64-i2c-oled-scherm-ssd1306-wit-of-blauw)). Display area itself is: 25 mm x 14 mm. Shows cycling data and diagnostic info that is gathered during operation by the Feather ESP32 to inform the SIMCLINE user about relevant information. NOTICE: a) Many different formfactors are offered at webshops; b) Install Vertical Through Hole Male PCB Header Pins on the board; this will allow correct mounting of the board inside the components box!<br>
