@@ -58,7 +58,7 @@ A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This
 - Internal SRAM: 512 KB
 - Connectivity: Wi-Fi 4 (2.4 GHz) + Bluetooth LE
 
-For future development with Simcline-V3, you should instead look for an ESP32-S3 board with 8 MB Flash and 8 MB PSRAM (such as the XIAO ESP32-S3), because neither of these Feather variants provides both large flash and large PSRAM. However, both boards will work (for now but not tested) with an app partition scheme of at least **3 MB**!<br>
+For future development with Simcline-V3, you should instead look for an ESP32-S3 board with **8 MB Flash** and **8 MB PSRAM** (such as the XIAO ESP32-S3), because neither of these Feather variants provides both large Flash and large PSRAM. However, both boards will work (for now) with an **APP Partition Scheme** of at least **3 MB**! Notice: **I have NOT tested these boards**.<br>
 [Adafruit Feather ESP32-S3](https://learn.adafruit.com/adafruit-esp32-s3-feather/overview)
 
 <b>OLED display blue/white 128x64 pixels (0,96 Inch, I2C)</b><br>
