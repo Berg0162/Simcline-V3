@@ -48,7 +48,7 @@ In this project is choosen for the following 5 compact active components that ar
 A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This board enables the processor to set the Actuator motor in up or down movement. It transforms logical digital levels (Go Up, Go Down and Stop) from the Feather ESP32 to switching of 12 Volt at 3,6 Amperes max., the levels at which the Actuator works. Notice that default the board comes limited to 2,6 Amperes and you need to add a resistor to set for max current level. Install Vertical Through Hole Male PCB Header Pins on the board; this will allow correct mounting of the board inside the components box!<br>
 
 <b>Adafruit ESP32 Feather V2</b><br>
-During a few years we have gained a lot of experience with the very stable and reliable <b>Adafruit ESP32 Feather V2</b> - with onboard the fabulous ESP32 WROOM module. The ESP32 has both WiFi and Bluetooth Classic/LE support. However, this Feather board is not capable of running BLE and WiFi at the same time due to `.iram0.text` overflows. **Simcline-V3 will work with this board, but the configuration portal is dropped at compile time.**
+During a few years we have gained a lot of experience with the very stable and reliable <b>Adafruit ESP32 Feather V2</b> - with onboard the fabulous ESP32 WROOM module. The ESP32 has both WiFi and Bluetooth Classic/LE support. However, this Feather board is not capable of running BLE and WiFi at the same time due to `IRAM` memory overflows. **Simcline-V3 will work with this board, but the configuration portal is dropped at compile time.**
 [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2) <br>
 
 <b>OLED display blue/white 128x64 pixels (0,96 Inch, I2C)</b><br>
