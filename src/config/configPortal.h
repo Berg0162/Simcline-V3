@@ -10,7 +10,6 @@
 // Uncomment to force-enable after testing the selected board/core combination.
 //#define ENABLE_CONFIG_PORTAL
 
-
 // Access Point SSID and password used by the startup configuration portal.
 #define PORTAL_APPNAME 	"SimclineCfg"
 #define PORTAL_PASSWORD "12345678"
