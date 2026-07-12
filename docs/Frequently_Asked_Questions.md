@@ -51,9 +51,9 @@ The load of Simcline-V3 is balanced over 2 processor cores of the ESP32-S3 proce
 3) Wait for Simcline and Trainer to connect! 9 Out of 10 times this is immediately successful. If this is NOT the case then Reset Simcline first and wait again for a Simcline-Trainer connection! If this is NOT successful: Read [FAQ #1](https://github.com/Berg0162/Simcline-V3/blob/main/docs/Frequently_Asked_Questions.md#1), take appropriate measures and than go back to "Start" after <b>ALL</b> components have been Powered <b>OFF</b> first.
 4) Laptop/Zwift Power-ON --> ONLY when Simcline and Trainer have been connected successfully!
 5) Wait and wait for the Zwift pairing window to pop-up
-6) Click orange POWER SOURCE button and select in the list with devices: **Sim32**
-7) Click orange RESISTANCE button and select in the list with devices: **Sim32**
-8) Click orange CADENCE button and select in the list with devices: **Sim32**
+6) Click orange POWER SOURCE button and select in the list with devices: **SIM32**
+7) Click orange RESISTANCE button and select in the list with devices: **SIM32**
+8) Click orange CADENCE button and select in the list with devices: **SIM32**
 9) Click orange OK! button, when all the selected devices are conforming your choices and are indicated as <b>CONNECTED</b>!
 
 # [7]
