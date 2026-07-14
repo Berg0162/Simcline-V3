@@ -1,11 +1,8 @@
 #ifndef IBOARD_H_
 #define IBOARD_H_
 
+#include <Arduino.h>
 #include <Esp.h>
-#include <Wire.h>
-#define DEBUG
-// Include these debug utility macros in all cases!
-#include "config/configDebug.h"
 
 class IBoard {
   public:
@@ -13,14 +10,22 @@ class IBoard {
 
     virtual void setup() = 0;
 
-    void initUSB(long rate) {
-	// Initialize USB connection to the computer to catch debug messages
+    void initUSB(long rate, uint32_t waitTimeoutMs = 2500) {
+        // Initialize USB connection to the computer to catch debug messages.
+        // Do not wait forever: boards can run headless, or USB CDC may never
+        // become ready when no serial monitor is attached.
         Serial.setRxBufferSize(256); // Increase RX buffer size
         Serial.begin(rate);
 
-        while (!Serial) delay(10); 
-        Serial.flush();
-        delay(800); // Give Serial I/O time to settle
+        const uint32_t startMs = millis();
+        while(!Serial && (millis() - startMs < waitTimeoutMs)) {
+            delay(10);
+        }
+
+        if(Serial) {
+            Serial.flush();
+            delay(800); // Give Serial I/O time to settle
+        }
     };
 
 #ifdef DEBUG 
