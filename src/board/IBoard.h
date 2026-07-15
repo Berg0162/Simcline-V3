@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <Esp.h>
+#include <Wire.h>
 
 class IBoard {
   public:
@@ -11,6 +12,7 @@ class IBoard {
     virtual void setup() = 0;
 
     void initUSB(long rate, uint32_t waitTimeoutMs = 2500) {
+#ifdef DEBUG
         // Initialize USB connection to the computer to catch debug messages.
         // Do not wait forever: boards can run headless, or USB CDC may never
         // become ready when no serial monitor is attached.
@@ -26,13 +28,15 @@ class IBoard {
             Serial.flush();
             delay(800); // Give Serial I/O time to settle
         }
+#endif
     };
 
-#ifdef DEBUG 
+
     void scanForDevices(void) {
-  	byte error, address;
-  	uint8_t nDevices = 0;
-  	for(address = 1; address < 127; address++ ) {
+#ifdef DEBUG 
+		byte error, address;
+		uint8_t nDevices = 0;
+		for(address = 1; address < 127; address++ ) {
     		// The scanner uses the return value of the Wire.endTransmisstion to see if
     		// a device did acknowledge to the address.
     		Wire.beginTransmission(address);
@@ -43,17 +47,18 @@ class IBoard {
     		} else if(error == 4) {
       			LOG("Unknown error at address 0x%X", address);
     		}    
-  	}
-  	if(nDevices == 0) Serial.println("No I2C devices found!");
-    };
+		}
+		if(nDevices == 0) Serial.println("No I2C devices found!");
 #endif
+    };
+
 
     void initWire(bool test) {
-  	// Set I2C SDA and SCL for TOF sensor (VL6180X)
-  	if( Wire.begin(PIN_I2C_SDA, PIN_I2C_SCL) ) LOG("Wire (I2C) Initialized!");
-	else LOG("Initialize Wire (I2C) Failed!");
+		// Set I2C SDA and SCL for TOF sensor (VL6180X)
+		if( Wire.begin(PIN_I2C_SDA, PIN_I2C_SCL) ) LOG("Wire (I2C) Initialized!");
+		else LOG("Initialize Wire (I2C) Failed!");
 #ifdef DEBUG
-	if(test) scanForDevices();
+		if(test) scanForDevices();
 #endif
     };
 
