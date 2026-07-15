@@ -1,102 +1,140 @@
-
-# [1] 
+# [1]
 <b>Who is in control?</b><br>
-+ When a training app (like Zwift on your laptop) has connected to your trainer using the FTMS protocol: is it possible to connect multiple devices via FTMS? As FTMS enables control of a physical device there can only be one <b>“controller”</b> to avoid safety issues. This means that you will not be able to connect multiple devices directly to the indoor bike trainer or treadmill using FTMS. If the trainer does not appear in an app’s (e.g. Zwift's) device list (on the Zwift pairing screen) it generally means the trainer is (still) connected to another controlling app or device. It is virtually impossible to connect the trainer to Zwift using FTMS, have a nice indoor ride and at the same time to connect for example the Simcline to the trainer or Zwift for simulating road incline... This means that other active cycling App's (installed on your telephone and/or tablet) are in competition with your Zwift App on the laptop to connect with the trainer! Be carefull with devices with active cycling Apps near your setup during the connection phase! Notice that modern smartphones have very powerful BLE/WIFI chips that have an indoor BLE reach of 6-10 meters. If in doubt: turn Flight Mode On!
+
+When a training app such as Zwift connects to a trainer through Bluetooth FTMS, it normally requests control through the FTMS Control Point. Although a trainer may support more than one Bluetooth connection, control permission and telemetry connections are not the same thing. In practice, many trainers allow only one app or device at a time to control resistance. The exact behavior depends on the trainer and its firmware.
+
+If the trainer does not appear on an app's pairing screen, it may still be connected to another app or device. Close other cycling and fitness apps that could connect automatically, including apps on nearby phones and tablets. If necessary, temporarily disable Bluetooth on those devices. Avoid enabling Flight Mode when the device's Wi-Fi connection is needed for Zwift or the Zwift Companion app.
+
+Simcline-V3 sits between Zwift and the trainer: Zwift connects to Simcline-V3, and Simcline-V3 connects to the trainer. Do not also connect Zwift directly to the trainer as the controllable device.
 
 # [2]
-<b>What about ANT+ (FE-C) and FTMS at the same time?</b><br>
-+ When a training app (like Zwift) has connected to your trainer using the ANT+ protocol: is it possible to connect other devices via FTMS?<br>
-Since this ANT+ connection enables control of the physical device (trainer) there can NOT be connected another <b>“controller”</b> at the same time over FTMS to avoid safety issues. Only one (1) controlling app is allowed to connect and drive the Trainer at any time. You know, 2 captains on one ship is a recipe for disaster!
-If this case, unfortunately and undesirebly, happens with your equipment setup, the controlling Client-side code will not connect or disconnect with an error message! So keep these worlds separated! If you intend to use devices with BLE and FTMS: mechanically disconnect the ANT+ dongle to avoid your controller App (like Zwift) to (auto)connect over ANT+.
+<b>What about ANT+ FE-C and FTMS at the same time?</b><br>
+
+Some trainers advertise both ANT+ FE-C and Bluetooth FTMS. Whether they accept control commands over both protocols at the same time depends on the trainer's firmware. Some trainers arbitrate between controllers, while others reject a second controller or behave unpredictably.
+
+For a reliable Simcline-V3 setup, use one control path only. When using Bluetooth FTMS, configure Zwift to connect to **SIM32** and not directly to the trainer. If Zwift keeps selecting the trainer through ANT+ FE-C, remove the ANT+ dongle temporarily or disable that pairing, restart the equipment, and pair again. Removing the dongle is a troubleshooting measure rather than a requirement of the FTMS specification.
 
 # [3]
-<b>What about Zwift Hub One and Jetblack users?</b><br>
-+ There is an excellent review available [DCRainmaker Zwift Hub review](https://www.dcrainmaker.com/2022/10/zwift-hub-smart-trainer-in-depth-review-the-best-bang-for-your-buck.html), that describes o.a. a special goodie that comes with the Zwift Hub One and Jetblack:
->**– Protocol Compatibility:** ANT+ FE-C, ANT+ Power, Bluetooth Smart Trainer Control, Bluetooth Smart Power (everything you need)<br>
-**– Unique Party Trick: Can rebroadcast your heart rate sensor within a single channel, ideal for Apple TV Zwift users (who are Bluetooth channel limited)**<br>
-**– App Compatibility:** Every app out there basically (Zwift, TrainerRoad, Rouvy, RGT, The Sufferfest, Kinomap, etc…)<br>
+<b>What about Zwift Hub and JetBlack trainer users?</b><br>
 
-Simcline-V3 **fully** supports this proprietary Zwift function for your heart rate sensor connection. The code supports the same features as you would have had with only Zwift App connected to Zwift Hub or JetBlack trainer! Use your heart rate band the way you are used too before the Simcline-V3 came in between your Zwift Hub/Jetblack trainer and the Zwift App! It should be fully transparent with respect to this feature! Please test yourself!
+Some trainers can bridge a heart-rate monitor over the trainer's Bluetooth connection. This is particularly useful on platforms with a limited number of simultaneous Bluetooth connections, such as Apple TV. Trainer features and Zwift support change over time, so consult the current documentation for your exact trainer model and firmware.
+
+Simcline-V3 mirrors the relevant heart-rate service and is designed to pass the bridged heart-rate data through transparently. This functionality has been implemented for supported Zwift Hub and JetBlack configurations, but compatibility cannot be assumed for every JetBlack model or future firmware version. When reporting a problem, include the exact trainer model, trainer firmware, Zwift platform, and connection method.
+
+For background information, see the [DCRainmaker Zwift Hub review](https://www.dcrainmaker.com/2022/10/zwift-hub-smart-trainer-in-depth-review-the-best-bang-for-your-buck.html). Notice that this 2022 review covers the original Zwift Hub; it is not a compatibility list for every later Zwift Hub or JetBlack model.
 
 # [4]
-<b>How to cleanup Zwift devices from the past?</b><br>
-+ Zwift can sometimes hang onto the wrong info, such as trainers or sensors that were paired to the game in the past. Zwift uses Mac Addresses from previous connections to identify devices. So when device names change Zwift hangs on to the unique Mac Addresses rather than the names that you see in the pairing screens! This can be rather confusing and lead to misunderstandings when you connect devices having only their original names shown and not the actual names....<br>
-Check out the steps below.<br>
-For <b>PC/Mac</b> to reset all the Zwift stored devices on a PC or Mac, complete these steps:
-- Close Zwift
-- On your desktop, open Documents
-- Double-click Zwift
-- Delete or Edit <knowndevices.xml><br>
+<b>How do I remove old devices from Zwift?</b><br>
 
-Next time you go for a Zwift ride:
-- Launch Zwift
-- Pair your devices
- 
+Zwift can retain pairing information for trainers and sensors used in earlier sessions. Because devices are identified using more than just the names shown on the pairing screen, changing a device name does not necessarily remove an old pairing.
+
+To remove stored device pairings on a PC or Mac:
+
+1. Close Zwift completely.
+2. Open the `Zwift` folder inside your `Documents` folder.
+3. Make a backup if you may want to restore the current settings.
+4. Delete `knowndevices.xml`. Editing this XML file manually is recommended only if you understand its structure.
+5. Launch Zwift and pair the devices again.
+
+Zwift's official instructions for a complete preference reset may also tell you to delete `prefs.xml`. Doing so resets more than the stored device pairings, so it is not normally necessary when the only goal is to remove old devices.
+
 # [5]
-<b>How does Simcline-V3 utilize the Dual Processor capacities of the ESP32-S3?</b><br>
-+ One of the advantages of the ESP32-S3 platform is the fact that the ESP32-S3 Tensila processor has two cores. This makes it possible to precisely balance the load of a program over 2 processor cores. With the mechatronic Simcline setup this is particular usefull for the motor control of the actuator and the BLE MITM traffic, heavily leaning on the NimBLE-Arduino library. <br>
-During operation Zwift sends (about every 800 ms) new settings, and one of these is the grade value (road inclination in degrees). Simcline-V3 translates the grade to a level that should be reached by the actuator to simulate exactly the road grade that was received from Zwift. However, the actuator can only be switched to <b>move up</b>, <b>move down</b> or <b>stop</b>. After having set the actuator to move (up or down), the program has to check continuously if the actuator has reached the desired level by reading its position with the help of the Time-Of-Flight sensor and act accordingly. To avoid conflicts during variable updates (i.c. TargetPosition) a Binary Semaphore scheme is applied to protect <b>task shared variables</b> during an update and presentation. <br>
-Meanwhile the trainer sends all your cycling data (CPS, CSC, FTMS and optional HRM) 4-5 times per second over BLE MITM channels. The Zwift app has to confirm the receipt of several of these data. Vice versa, the (virtual ride) data sent by Zwift have to be tranferred to the trainer and also the trainer has to confirm the receipt of several of these data. Simcline-V3, being a BLE MITM, handles a huge amount of BLE traffic per second and it does not allow for mistakes! <br>
-The load of Simcline-V3 is balanced over 2 processor cores of the ESP32-S3 processor: <br>
-<b>On Core 0</b>: exclusively all the BLE handling (NimBLE-Arduino) <br>
-<b>On Core 1</b>: the critical control of the actuator, presentation (display) and other small tasks. <br>
+<b>How does Simcline-V3 use the two processor cores of the ESP32-S3?</b><br>
+
+The ESP32-S3 has two Xtensa processor cores. Simcline-V3 uses them to separate time-sensitive actuator control from the substantial amount of Bluetooth traffic handled through NimBLE-Arduino.
+
+During a ride, Zwift regularly sends new simulation settings. One of these settings is road grade, expressed as a percentage. Simcline-V3 converts the received grade into an actuator target position. The actuator can move up, move down, or stop, so its position must be monitored continuously with the Time-of-Flight sensor. A semaphore protects target-position data that is shared by different tasks.
+
+At the same time, the trainer sends cycling data through services such as CPS, CSC, FTMS, and optionally HRM. Simcline-V3 mirrors this traffic between the trainer and Zwift and forwards control data in the opposite direction.
+
+The software is configured so that:
+
+- Core 0 primarily handles Bluetooth and NimBLE-Arduino work.
+- Core 1 handles actuator control, the display, and other application tasks.
+
+This division describes the intended Simcline-V3 configuration. Actual scheduling also depends on the ESP32 Arduino core, NimBLE-Arduino, and the board settings selected in the Arduino IDE. Follow the project's documented core settings when compiling the software.
 
 # [6]
-<b>Why is my trainer variably successful in connecting with the SIMCLINE?</b><br>
-+ In most cases this behavior can be attributed to <b>NOT</b> follow the critical sequence for starting and connecting of Trainer, SIMCLINE and Zwift.<br>
+<b>Why does my trainer connect to SIMCLINE only intermittently?</b><br>
 
-0) The Start or Initial situation of <b>ALL</b> parties involved is: Laptop/Zwift, Simcline and Trainer are Powered <b>OFF</b>!
-1) Trainer Power-ON --> Trainer needs some time (4 seconds?) to settle and start advertising!
-2) Power-ON or Reset Simcline (ESP32-S3 board) --> Simcline needs some time to start, test motor functions and start scanning for Trainer!
-3) Wait for Simcline and Trainer to connect! 9 Out of 10 times this is immediately successful. If this is NOT the case then Reset Simcline first and wait again for a Simcline-Trainer connection! If this is NOT successful: Read [FAQ #1](https://github.com/Berg0162/Simcline-V3/blob/main/docs/Frequently_Asked_Questions.md#1), take appropriate measures and than go back to "Start" after <b>ALL</b> components have been Powered <b>OFF</b> first.
-4) Laptop/Zwift Power-ON --> ONLY when Simcline and Trainer have been connected successfully!
-5) Wait and wait for the Zwift pairing window to pop-up
-6) Click orange POWER SOURCE button and select in the list with devices: **SIM32**
-7) Click orange RESISTANCE button and select in the list with devices: **SIM32**
-8) Click orange CADENCE button and select in the list with devices: **SIM32**
-9) Click orange OK! button, when all the selected devices are conforming your choices and are indicated as <b>CONNECTED</b>!
+Connection problems are often caused by a competing app or by starting the components in an unsuitable order. Use the following sequence:
+
+1. Close Zwift and any other app that might connect to the trainer. Power off the trainer and Simcline-V3.
+2. Power on the trainer and wait until it has completed startup and is advertising.
+3. Power on or reset Simcline-V3. It will perform its startup checks and scan for the trainer.
+4. Wait until Simcline-V3 and the trainer are connected. If they do not connect, reset Simcline-V3 once and try again.
+5. Start Zwift only after the trainer and Simcline-V3 have connected.
+6. On the Zwift pairing screen, select **SIM32** as **POWER SOURCE**.
+7. Select **SIM32** as **RESISTANCE** or **CONTROLLABLE**, depending on the wording used by your Zwift version.
+8. Select **SIM32** as **CADENCE**.
+9. Confirm that the selected devices show **CONNECTED**, then continue.
+
+It is normally sufficient to close Zwift and competing apps; the laptop itself does not need to be powered off. If the first connection still fails, follow the troubleshooting advice in [FAQ #1](#1) and check that Zwift has not paired directly with the trainer through Bluetooth or ANT+.
 
 # [7]
-<b>Will Simcline-V3 work out-of-the-box with my ESP32-S3 development board?</b><br>
-+ Yes, in most cases, when we assume your ESP32-S3 has **minimally 4 MB** and **preferably 8 Mb Flash** on board; PSRAM memory is optional. Select a partition scheme (`menu` -> `Tools`) with an App **Partition Scheme** of at least **3 MB**! Particularly when you <b>restrict</b> (!) your attention initially to the <b>Smart-MITM</b> application, to check out if the concept is working with your hardware.<br>
-If you want finally a full blown working SIMCLINE setup, you have to <b>complement</b> the concrete ESP32board class in the file: `/documents/arduino/libraries/Simcline-V3/src/board/YOUR_ESP32_Board.h`. It needs minimally definitions for the PIN assignments: TOF-sensor (I2C), DRV8871 Motor Driver board (Actuator) and optionally for 2 Buttons. Possibly you have to insert code for specific board initialization (not shown).<br>
-```C++
-#define PIN_ACTUATOR_1 	-1  // PIN to be connected to pin IN2 of the Adafruit DRV8871 Motor Driver board
-#define PIN_ACTUATOR_2 	-1  // PIN to be connected to pin IN1 of the Adafruit DRV8871 Motor Driver board
+<b>Will Simcline-V3 work out of the box with my ESP32-S3 development board?</b><br>
 
-// Optional Button 1 and 2 PIN connections
-//#define PIN_BUTTON_1  -1  // PIN to be connected to Internal/External button 
-//#define PIN_BUTTON_2  -1  // PIN to be connected to Internal/External button 
+In most cases, yes, provided that the ESP32-S3 board has at least **4 MB of flash memory**; **8 MB is preferred**. PSRAM is optional. In the Arduino IDE **Tools** menu, select a partition scheme that provides an application partition of at least **3 MB**.
 
-#define PIN_I2C_SCL    	SCL // Default in Arduino IDE -> Check for your board!
-#define PIN_I2C_SDA    	SDA // Default in Arduino IDE -> Check for your board!
+Start with the **Smart-MITM** application to confirm that the Bluetooth MITM concept works with your board. A complete SIMCLINE setup also requires a board definition for the hardware connections. Complete the ESP32 board class in:
+
+`src/board/YOUR_ESP32_Board.h`
+
+At minimum, define the pins for the Time-of-Flight sensor over I2C and the DRV8871 actuator motor driver. Two button inputs are optional. Some boards may also require board-specific initialization code.
+
+```cpp
+#define PIN_ACTUATOR_1  -1  // Connect to IN2 on the Adafruit DRV8871 motor-driver board
+#define PIN_ACTUATOR_2  -1  // Connect to IN1 on the Adafruit DRV8871 motor-driver board
+
+// Optional button connections
+//#define PIN_BUTTON_1  -1
+//#define PIN_BUTTON_2  -1
+
+#define PIN_I2C_SCL     SCL // Verify the Arduino IDE default for your board
+#define PIN_I2C_SDA     SDA // Verify the Arduino IDE default for your board
 ```
-For how Arduino IDE 2.x handles the specific board pin assignments, search for your board in: [this reference](https://github.com/espressif/arduino-esp32/blob/master/variants)
+
+To find the default pin assignments used by Arduino-ESP32, locate your board in the [Arduino-ESP32 variants directory](https://github.com/espressif/arduino-esp32/tree/master/variants).
 
 # [8]
-<b>How are Zwift, Trainer and Simcline handling (changes in) road grade during your ride!</b><br>
-1) The trainer calculates the resistance, among others using road grade information. That's why Zwift sends modified road grades to the trainer to set resistance. Simple as that! However, resistance (i.e. road grade) is also dependent of Zwift's famous difficulty setting. With the default difficulty setting of 50%, Zwift sends only half the value of the road grade to the trainer. Only when the Zwift App difficulty setting is 100%, Zwift will send unmodified road grades to the trainer (WYSIWYG). As a consequence the Simcline will lift accordingly and show the road grade values on the display! If you observe deviations when riding long and steady climbs, like Alpe-de-Huez or Mt-Ventoux, check the Zwift App "difficulty setting" that is most likely the cause! Most Zwifters have set the Zwift difficulty at 100%, because they want a "road-realistic" experience when training and racing indoors with Zwift.
-2) Trainers do NOT react momentarily, but delayed on changes in road grade, they need to process incoming info and the (direct) drive mechanism has to be settled accordingly before you will feel it as a change in resistance. The delay between the initial command (by Zwift) and the feel on the bike is 1 to 1.5 seconds. To accommodate for this delay, the Zwift app sends commands 1 to 1.5 second <b>earlier</b> (!) than what you observe on your screen (slope of the road you see and the displayed road grade value on the Zwift window). This explains temporarily deviating values on the Simcline display in comparison what you see on the Zwift window, after all Simcline is a MITM and is the first to receive changes in road grade, to react (moving the lift mechanism) and to show the new value on the display. When riding rolling hills in rapid succession, like Zwift's Titans Grove, this is most visible! Notice that the Simcline's responsiveness is benefiting of the feature!
-3) Zwift handles downhill roads differently! When the road grade values become negative, during a downhill section of the road, Zwift will consequently send only half of the road grade value to the trainer (i.e Simcline). Modern trainers with direct drive are capable to accelerate proportionally with negative road grades. So when the Zwift window shows a -8.0 grade value it has sent only -4.0 road grade to the trainer. The rationale behind this is to minimize effortless riding, after all you get on an indoor bike to do some work! Simcline will act accordingly and display only 50% of the Zwift road grade value on downhill sections!  
-4) After Zwift has paired with your trainer it sends a first road grade value (randomly between 2.0 and 5.0) to the trainer, to wake-up/activate the resistance mechanism. You will feel the resistance while you were expecting a flat road for a start. Simcline, being a MITM, will lift your front wheel accordingly! This road grade value remains constant, until you have actually <b>started</b> with the ride of your choice!
-5) The Simcline code has its own setting that influences how it will react on and display the road grade value sent by Zwift. The Grade-Change-Factor functionality was originally designed and implemented to allow a Simcline user to attenuate the actuator movements in case of a noisy and/or slow actuator. Notice that the original (unmodified) Zwift grade value is passed on to the trainer, so the trainer's resistance is NOT affected by the Grade-Change-Factor setting! Default code setting for the Grade-Change-Factor is 100% and it can be modified dynamically using the Simcline app.
+<b>How do Zwift, the trainer, and Simcline-V3 handle road-grade changes?</b><br>
 
-In conclusion when you see different road grade values in the Zwift window compared with the Simcline display, this can have different reasons! If you consider this a problem: check first Zwift difficulty setting and Grade-Change-Factor of the Simcline, these can be modified to what you prefer! Like it or not, the other causes are Zwift features and part of the design! Cycling Apps like Rouvy and MyWhoosh handle road grades more or less comparably.
+Several factors can cause the grade shown by Simcline-V3 to differ temporarily from the grade displayed by Zwift:
+
+1. **Trainer Difficulty:** Zwift applies its Trainer Difficulty setting to the gradient sent to the controllable trainer. At 50%, an uphill gradient is typically sent at half its displayed magnitude; at 100%, the full uphill gradient is sent. This setting changes the simulated gradient and therefore the gearing needed for a climb, but it does not directly scale the rider's power. Simcline-V3 reacts to the value that Zwift sends to the trainer.
+
+2. **Timing and trainer response:** A trainer cannot change resistance instantaneously. Zwift, the trainer, the Bluetooth connection, and the actuator each introduce some delay. To accommodate for the trainer delay, the Zwift app sends gradients 1 to 1.5 second earlier(!) than what you observe on your screen (the displayed road grade value on the Zwift window). SIMCLINE may therefore begin moving before the on-screen grade appears to match, particularly on rapidly rolling terrain. The precise timing varies by trainer, firmware, Zwift version, and connection method. When riding rolling hills, in rapid succession, like Zwift's **Titans Grove**, this is most visible! Notice that the responsiveness is benefiting!
+
+3. **Downhill behavior:** Zwift can reduce the magnitude of negative gradients sent to a trainer. As a commonly observed example, an on-screen grade of -8% may result in approximately -4% being sent. This behavior can change and may depend on Zwift settings or trainer support, so regard the exact ratio as observed behavior rather than a protocol guarantee. Simcline-V3 displays and responds to the grade value it receives.
+
+4. **Initial simulation command:** Zwift may send a non-zero simulation value (randomly between 2.0 and 5.0) while preparing a ride. Simcline-V3 can respond to this command before the selected ride has started, however, Simcline-V3 filters the early values and keeps the actuator at level (flat road).
+
+5. **Grade-Change-Factor:** Simcline-V3 has its own Grade-Change-Factor, originally introduced to reduce actuator movement when using a noisy or slow actuator. Its default value is 100%, and it can be changed dynamically with the Simcline app. The factor affects the actuator movement and displayed Simcline grade; the original grade command is forwarded to the trainer, so trainer resistance is not modified by this setting.
+
+When the Zwift and Simcline-V3 displays differ, first check Zwift's Trainer Difficulty and the Simcline Grade-Change-Factor. Short-lived differences during grade transitions can be normal. Other cycling apps may apply their own grade-scaling and timing rules; do not assume that Rouvy, MyWhoosh, and Zwift behave identically.
 
 # [9]
-<b>How to (later) manage (changed) Device MAC Addresses?</b> <br>
-When you run <b>Smart-MITM</b>, it is instructed to detect and store in ESP32-S3 NVS (Non-Volatile-Storage) the MAC addresses for Trainer and Laptop. These stored MAC addresses are used by <b>Smart-Simcline</b> to unmistakenly connect to the right client and server! If you want to check or eventually change the MAC addresses in NVS (because of changing devices) you will find in `Simcline-V3/examples` a tool <b>`Test_Board_plus_NVS`</b> that will help with the task! Notice that MAC addresses have to be a) <b>correct</b> and b) in <b>right format</b> to be resolved at connection-time!<br>
-The second option with permanent result, is to insert <b>defines</b> for Laptop and Trainer addresses in the `configNimBLE.h`.
-+ Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configNimBLE.h`<br>
-Look for the following section:
-```C++
-// ----------------------------------------------------------------------------------------
-// Your FIXED hardware Laptop/Trainer/Smartphone BLE MAC- or DEVICE-Addresses 
-// Enter address string here like the printed format like [00:01:02:03:04:05 0]
-// LAPTOP Fixed Device Address --------Public Type (0) --------- Random Type (1)-----------
-#define LAPTOPADDRESS "00:01:02:03:04:05 0" // Example Mac string of Public Type
-// TRAINER Fixed Device Address --------Public Type (0) --------- Random Type (1)----------
-#define TRAINERADDRESS "00:01:02:03:04:05 1"  // Example Mac string of Random Type
-```
-+ Uncommented `#define LAPTOPADDRESS` and `#define TRAINERADDRESS` are <b>overruling</b> whatever values are stored within NVS !
+<b>How do I manage changed device addresses?</b><br>
 
+When **Smart-MITM** runs, it detects the Bluetooth device addresses of the trainer and the Zwift device and stores them in ESP32-S3 NVS (Non-Volatile Storage). **Smart-Simcline** uses the stored addresses to reconnect to the intended client and server.
+
+To inspect or change the addresses stored in NVS, use the **`Test_Board_plus_NVS`** tool in `Simcline-V3/examples`. An address must have both the correct value and the correct address type to be resolved during connection.
+
+As a second option, fixed addresses can be defined in:
+
+`src/config/configNimBLE.h`
+
+Look for the following section:
+
+```cpp
+// Fixed Bluetooth addresses for the Zwift device and trainer.
+// Format: "00:01:02:03:04:05 0"
+// Address type: public (0) or random (1).
+
+#define LAPTOPADDRESS  "00:01:02:03:04:05 0" // Example public address
+#define TRAINERADDRESS "00:01:02:03:04:05 1" // Example random address
+```
+
+When uncommented, `LAPTOPADDRESS` and `TRAINERADDRESS` override the corresponding values stored in NVS.
+
+Be aware that phones, tablets, and computers may use private or rotating Bluetooth addresses. Such an address may change and is therefore unsuitable as a permanent compile-time value. Prefer the NVS discovery procedure unless you know that the device exposes a stable address. Do not publish real device addresses in screenshots, logs, or repository files.
