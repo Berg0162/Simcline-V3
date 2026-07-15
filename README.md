@@ -123,7 +123,7 @@ Take your time here. Most problems with Arduino projects are caused by one small
 The requirements in this phase are simple: 
 + running Zwift, Rouvy or myWhoosh app or alike, 
 + working XIAO ESP32-S3 development board, or another suitable ESP32-S3 board, and 
-+ working Smart Trainer (see above support list)
++ working Smart Trainer,
 + running Simcline-V3 library and Smart-MITM application.<br>
 
 # Testing is Knowing!<br>
