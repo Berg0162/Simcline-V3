@@ -95,4 +95,7 @@ SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuat
 See: [how road grades are handled FAQ #8](Frequently_Asked_Questions.md#8)<br>
 See: [when devices have changed FAQ #9](Frequently_Asked_Questions.md#9)<br>
 
+# Production build
+After all testing is complete—including verification with the Serial Monitor—deactivate `GLOBAL_DEBUG` in `config/configDebug.h` before compiling `Smart-Simcline` for standalone use with SIMCLINE 2.0. Do this **only** for the final production build that will run without an USB connection to the computer or Arduino IDE.
+
 
