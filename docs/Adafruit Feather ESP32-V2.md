@@ -1,8 +1,8 @@
 # <img src="../images/SC_logo.png" width="64" height="64" alt="SIMCLINE Icon"> &nbsp; SIMCLINE for Bluetooth Smart trainers <br> based on the Adafruit Feather ESP32 V2 board with OLED display.
 
 # Setup Feather ESP32 V2 for Simcline-V3
-The board and display to work with can be activated in Simcline-V3 with the right settings, see folder: <b>/Simcline-V3/src/config</b><br>
-1) Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configBoard.h`
+The board and display to work with can be activated in Simcline-V3 with the right settings.<br>
+1) Open file, edit and save(!): `src/config/configBoard.h`
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the board here, that is part of your system setup
@@ -12,7 +12,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 #define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
-2) Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configDisplay.h`<br>
+2) Open file, edit and save(!): `src/config/configDisplay.h`<br>
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the display, that is part of your system setup
@@ -39,9 +39,11 @@ If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for 
 
 <img src="../images/adafruit_products_Adafruit_ESP32_Feather_V2_Pinout.png"  alt="Feather ESP32 V2 pinout">
 
-# Electronic Components and Wiring for version 2.0<br>
-
+# Electronic Components and Wiring for version 2.0
+<p align=center>
 <img src="../images/FeatherESP32V2.jpg"  alt="Circuitry version 2.0">
+</p>
+<br clear="left">
 In this project is choosen for the following 5 compact active components that are slightly different from the earlier SIMCLINE project and that can finally all be mounted inside the components box:<br>
 
 <b>Adafruit DRV8871 DC Motor Driver</b><br>
