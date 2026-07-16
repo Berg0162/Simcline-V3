@@ -7,7 +7,7 @@ First test the ESP32-S3 board of your choice with the display attached to it, af
 # Setup your ESP32-S3 board for Simcline-V3
 The board and display to work with can be activated in Simcline-V3 with the right settings, see folder: `/Simcline-V3/src/config`<br>
 
-+ Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configBoard.h`
++ Open file, edit and save(!): `src/config/configBoard.h`
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the board here, that is part of your system setup
@@ -17,7 +17,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 //#define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
-+ Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configDisplay.h`<br>
++ Open file, edit and save(!): `src/config/configDisplay.h`<br>
 
 ```C++
 // ------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ Check it can measure the distance correctly using `/Simcline-V3/examples/Test_Bo
 
 Note down the provisional <b>MAXPOSITION</b> and <b>MINPOSITION</b> values of the TOF-sensor reaching the <b>top</b> position and <b>lowest</b> position!<br>
 
-Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configSimcline.h`<br>
+Open file, edit and save(!): `src/config/configSimcline.h`<br>
 
 Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> values in <b>configSimcline.h</b> in accordance with your mechanical setup.
 
@@ -97,5 +97,12 @@ See: [when devices have changed FAQ #9](Frequently_Asked_Questions.md#9)<br>
 
 # Production build
 After all testing is complete—including verification with the Serial Monitor—deactivate `GLOBAL_DEBUG` in `config/configDebug.h` before compiling `Smart-Simcline` for standalone use with SIMCLINE 2.0. Do this **only** for the final production build that will run without an USB connection to the computer or Arduino IDE.
+```C++
+// ------------------------------------------------------------------------------------------------
+// COMPILER DIRECTIVE to allow/suppress ALL DEBUG messages that help to debug code sections
+// Uncomment general "#define GLOBAL_DEBUG" to activate the Simcline-V3 debug master switch...
+//#define GLOBAL_DEBUG
+// ------------------------------------------------------------------------------------------------
+```
 
 
