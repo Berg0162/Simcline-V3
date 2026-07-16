@@ -32,20 +32,20 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 + When you want another board or display than is supplied as standard with Simcline-V3, a proficient programmer/user can implement Concrete Classes for ESP32-S3-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in `examples/Test_Board_plus_Display` to help you with the task!
 + <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
-# Attach the TOF-sensor to your ESP32-S3 board (connect wiring) and test
+# Connect wiring of the TOF-sensor to your ESP32-S3 board
 First install the <b>VL6180X</b> library in Arduino IDE 2 and the example programs that come with it. Connect using the prescribed wiring scheme depending on the board that you earlier selected: 
 [Seeed Studio XIAO ESP32-S3](https://github.com/Berg0162/Simcline-V3/blob/main/docs/XIAO%20ESP32S3%20Sense.md) or
 [Lilygo esp32s3 T-Display](https://github.com/Berg0162/Simcline-V3/blob/main/docs/LILYGO%20ESP32S3%20T-Display.md) or
 [Adafruit Feather ESP32-S3](https://github.com/Berg0162/Simcline-V3/blob/main/docs/Adafruit%20Feather%20ESP32S3.md) <br>
 Test with the supplier code examples and finally run `/Simcline-V3/examples/Test_Board_plus_VL6180X` to test in the Simcline-V3 environment.
 
-# Attach the Motor Driver board (connect wiring) 
+# Connect wiring of the Motor Driver board
 No library needed for <b>DRV8871</b>, but the supplier will have example code supplied. 
 
-# Connect wiring for power regulator (5V and 12V) and connect the Actuator to the Motor Driver board and test 
+# Connect wiring for power regulator (5V and 12V) and the Actuator to the Motor Driver board 
 Test the <b>DRV8871 plus Actuator</b> with `examples/Test_Board_plus_DRV8871`.
 
-# Setup and mount SIMCLINEmechanically...
+# Setup and mount SIMCLINE mechanically...
 Actuator attached to the body and powered
 
 # Add the TOF-sensor to the mechanic setup (in the component box)
@@ -84,8 +84,6 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 #define MINPOSITION 100 // VL6180X highest value top microswitch activated to mechanically stop operation
 #define MAXPOSITION 350 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
 ```
-<b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
-
 Now you should have a fully equiped and operational SIMCLINE (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
 It is time to run `examples/Test_Fully_Equiped_Setup`.<br>
 During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `src/config/configSimcline.h` ... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
@@ -105,5 +103,7 @@ After all testing is completeâ€”including verification with the Serial Monitorâ€
 //#define GLOBAL_DEBUG
 // ------------------------------------------------------------------------------------------------
 ```
+# Warning 
+When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 
