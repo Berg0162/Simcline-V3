@@ -114,7 +114,7 @@ Take your time here. Most problems with Arduino projects are caused by one small
 3. Install the ESP32 NimBLE-Arduino library (<b>Version 2.5.#</b>). In <b>Arduino IDE</b> go to <br>`Sketch menu` -> `Include Library` -> `Manage Libraries`, search for NimBLE-Arduino and install.
 4. Install [Adafruit OLED and GFX Libraries](https://makeabilitylab.github.io/physcomp/advancedio/oled-libraries.html), when you use an OLED display.
 5. Install [uleb128](https://github.com/bolderflight/uleb128), when you intend to run Simcline-V3 with **Zwift Virtual Shifting**.
-6. Install the Simcline-V3 library from this repository. Download as `.zip` and extract to the Arduino `libraries` folder, or use <b>Arduino IDE</b>: `Sketch menu` -> `Include library` -> `Add .Zip library`.
+6. Install the Simcline-V3 library from this repository. Download as `.zip` and extract to the Arduino `libraries` folder, or <br>use <b>Arduino IDE</b>: `Sketch menu` -> `Include library` -> `Add .Zip library`.
 7. Open the example you want to test: `File > Examples > Simcline-V3 > Smart-MITM`.
 8. Select your ESP32 board and upload the sketch.
 9. Open Serial Monitor, power on the trainer, and only start Zwift after Smart-MITM has connected to the trainer.<br>
