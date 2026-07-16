@@ -5,7 +5,7 @@
 First test the ESP32-S3 board of your choice with the display attached to it, after you have installed Arduino IDE 2 and the appropriate graphics libraries (like Adafruit GFX and/or TFT_eSPI). Notice that you have to install the original libraries and not the modified versions that product suppliers like to include! All graphics libraries come with code examples and test these. For TFT_eSPI you need to set your display in "User_Setup_Select.h" <b>first</b> to comply with the board/display type you use. Read and study the instructions that come with the sites of these libraries! Only when you have a working combination continue...
 
 # Setup your ESP32-S3 board for Simcline-V3
-The board and display to work with can be activated in Simcline-V3 with the right settings, see folder: `/Simcline-V3/src/config`<br>
+The board and display to work with can be activated in Simcline-V3 with the right settings, see folder: `src/config`<br>
 
 + Open file, edit and save(!): `src/config/configBoard.h`
 ```C++
@@ -29,7 +29,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 //#define SERIALDISPLAY
 // ------------------------------------------------------------------------------------------------
 ```
-+ When you want another board or display than is supplied as standard with Simcline-V3, a proficient programmer/user can implement Concrete Classes for ESP32-S3-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in `/Simcline-V3/examples/Test_Board_plus_Display` to help you with the task!
++ When you want another board or display than is supplied as standard with Simcline-V3, a proficient programmer/user can implement Concrete Classes for ESP32-S3-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in `examples/Test_Board_plus_Display` to help you with the task!
 + <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 # Attach the TOF-sensor to your ESP32-S3 board (connect wiring) and test
@@ -43,13 +43,13 @@ Test with the supplier code examples and finally run `/Simcline-V3/examples/Test
 No library needed for <b>DRV8871</b>, but the supplier will have example code supplied. 
 
 # Connect wiring for power regulator (5V and 12V) and connect the Actuator to the Motor Driver board and test 
-Test the <b>DRV8871 plus Actuator</b> with `/Simcline-V3/examples/Test_Board_plus_DRV8871`.
+Test the <b>DRV8871 plus Actuator</b> with `examples/Test_Board_plus_DRV8871`.
 
 # Setup and mount SIMCLINEmechanically...
 Actuator attached to the body and powered
 
 # Add the TOF-sensor to the mechanic setup (in the component box)
-Check it can measure the distance correctly using `/Simcline-V3/examples/Test_Board_plus_VL6180X`<br>
+Check it can measure the distance correctly using `examples/Test_Board_plus_VL6180X`<br>
 
 Note down the provisional <b>MAXPOSITION</b> and <b>MINPOSITION</b> values of the TOF-sensor reaching the <b>top</b> position and <b>lowest</b> position!<br>
 
@@ -87,7 +87,7 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 Now you should have a fully equiped and operational SIMCLINE (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
-It is time to run `/Simcline-V3/examples/Test_Fully_Equiped_Setup`.<br>
+It is time to run `examples/Test_Fully_Equiped_Setup`.<br>
 During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `src/config/configSimcline.h` ... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
 
 # Operational SIMCLINE passed the tests and is finetuned
@@ -97,7 +97,7 @@ See: [how road grades are handled FAQ #8](Frequently_Asked_Questions.md#8)<br>
 See: [when devices have changed FAQ #9](Frequently_Asked_Questions.md#9)<br>
 
 # Production build
-After all testing is complete—including verification with the Serial Monitor—deactivate `GLOBAL_DEBUG` in `config/configDebug.h` before compiling `Smart-Simcline` for standalone use with SIMCLINE 2.0. Do this **only** for the final production build that will run without an USB connection to the computer or Arduino IDE.
+After all testing is complete—including verification with the Serial Monitor—deactivate `GLOBAL_DEBUG` in `config/configDebug.h` before compiling `Smart-Simcline` for standalone use with SIMCLINE 2.0. Do this **only** for the final production build that will run without an USB connection to the computer or Arduino IDE. Only the display will give you feedback during operation!
 ```C++
 // ------------------------------------------------------------------------------------------------
 // COMPILER DIRECTIVE to allow/suppress ALL DEBUG messages that help to debug code sections
