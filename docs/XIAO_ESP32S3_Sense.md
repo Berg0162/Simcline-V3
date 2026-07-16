@@ -2,7 +2,7 @@
 
 # Setup XIAO ESP32-S3 for Simcline-V3
 The board and display to work with can be activated in Simcline-V3 with the right settings, see folder: <b>/Simcline-V3/src/config</b><br>
-1) Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configBoard.h`
+1) Open file, edit and save(!): `src/config/configBoard.h`
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the board here, that is part of your system setup
@@ -12,7 +12,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 //#define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
-2) Open file, edit and save(!): `/documents/arduino/libraries/Simcline-V3/src/config/configDisplay.h`<br>
+2) Open file, edit and save(!): `src/config/configDisplay.h`<br>
 ```C++
 // ------------------------------------------------------------------------------------------------
 // Define the display, that is part of your system setup
