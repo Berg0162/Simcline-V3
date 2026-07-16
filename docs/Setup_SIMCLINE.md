@@ -42,7 +42,8 @@ Test with the supplier code examples and finally run `/Simcline-V3/examples/Test
 # Connect wiring of the Motor Driver board
 No library needed for <b>DRV8871</b>, but the supplier will have example code supplied. 
 
-# Connect wiring for power regulator (5V and 12V) and the Actuator to the Motor Driver board 
+# Connect wiring for power regulator (5V and 12V)
+# Connect the Actuator to the Motor Driver board 
 Test the <b>DRV8871 plus Actuator</b> with `examples/Test_Board_plus_DRV8871`.
 
 # Setup and mount SIMCLINE mechanically...
