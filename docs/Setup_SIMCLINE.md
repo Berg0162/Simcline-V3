@@ -86,7 +86,7 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 ```
 Now you should have a fully equiped and operational SIMCLINE (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
 It is time to run `examples/Test_Fully_Equiped_Setup`.<br>
-During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `src/config/configSimcline.h` ... Don't forget to save the file before (!) you run the Full-Setup test-program again, otherwise the new values will not be effective!!
+During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `src/config/configSimcline.h`. **Don't forget to save the file before(!) you run the Full-Setup test-program again, otherwise the new values will not be effective!**
 
 # Operational SIMCLINE passed the tests and is finetuned
 Open now `examples/Smart-Simcline` program, compile and run!
