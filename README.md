@@ -97,7 +97,7 @@ This Simcline-V3 version therefore supports **Zwift Virtual Shifting**, enabling
 
 > **Important:** Zwift Virtual Shifting support requires a trainer running the firmware that explicitly supports the **Zwift Virtual Shifting** protocol.
 
-## ⚠️Library dependencies
+## ⚠️ Library dependencies
 
 Simcline-V3 is distributed as one complete integrated Arduino library. Arduino
 compiles the library source as a unit, so all core dependencies must be
