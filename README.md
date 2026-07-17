@@ -126,11 +126,58 @@ The requirements in this phase are simple:
 + working Smart Trainer,
 + running Simcline-V3 library and Smart-MITM application.<br>
 
+## Which example should I run?
+
+Simcline-V3 provides three main applications. They use the same library and
+configuration files but enable progressively more Simcline functionality.
+
+### 1. Smart-MITM
+
+Start here.
+
+Smart-MITM tests the Bluetooth man-in-the-middle bridge between the indoor
+trainer and a training application such as Zwift. It does not operate the
+Simcline lifter and does not require a physical display.
+
+The presentation subsystem is still initialized when **NODISPLAY** is selected.
+NODISPLAY supplies a no-output presentation implementation; it does not disable
+presentation initialization.
+
+Smart-MITM permits first-time connections from unknown devices. When the trainer
+and training application connect successfully, their Bluetooth addresses are
+stored in ESP32 non-volatile storage (NVS).
+
+### 2. Smart-MITM-xtra
+
+Run this after Smart-MITM when a supported display is connected.
+
+Smart-MITM-xtra performs the same Bluetooth bridge test and adds visible road
+grade, pairing messages, and trainer/application connection indicators. It does
+not operate the lifter.
+
+### 3. Smart-Simcline
+
+Run this only after:
+
+1. Smart-MITM has successfully connected to the intended trainer and training
+   application;
+2. their Bluetooth addresses have been stored in NVS;
+3. the board, display, actuator, limit switches, and VL6180X sensor have been
+   configured and tested with the component test examples.
+
+Smart-Simcline starts the complete Simcline application. It initializes and
+tests the actuator, starts the lifter control task, and converts received road
+grades into physical target positions.
+
+Unlike Smart-MITM, Smart-Simcline normally reconnects to the known devices
+stored during the introductory Smart-MITM test. If the intended devices change,
+run Smart-MITM again to perform discovery and update the stored addresses.
+
 # Testing is Knowing!<br>
 I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
 In the Simcline-V3 Library <b>Examples</b> section you will find the applications for testing and running SIMCLINE that come with the library. The one you should start with is <b>Smart-MITM</b>. It is developed to check whether the MITM solution works with your trainer, your training app and your ESP32 board.<br>Within Arduino IDE 2 select on the top bar menu: `File > Examples > Simcline-V3 > Smart-MITM`<br>
 
-<b>What it does in short:</b><br>
+<b>Smart-MITM application, what it does in short:</b><br>
 <img src="./images/MITM_Concepts_Explained.png" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
 A working <b>MITM</b> implementation links a bike trainer and a PC/Laptop/Tablet running Zwift or another training app with the XIAO ESP32-S3, like a <b>bridge</b> in between. The MITM bridge can pass on, inspect, control, filter or alter the interchanged traffic data! The <b>MITM</b> test code is fully ignorant of the mechanical or electronic components that drive the Simcline construction.<br>
 ```
@@ -154,7 +201,7 @@ The default Simcline-V3 configuration settings for Smart-MITM when using <b>any 
 + Debug:  <b>Defined</b>
 
 Optionally:
-+ Users with a <b>XIAO ESP32-S3</b> can set up their board and display now! See: [Setup XIAO ESP32-S3 plus OLED display](docs/XIAO_ESP32S3_Sense.md)
++ Users with a <b>XIAO ESP32-S3</b> can set up their board and optionally the display now! See: [Setup XIAO ESP32-S3 plus OLED display](docs/XIAO_ESP32S3_Sense.md)
 + Users with a <b>Lilygo ESP32-S3 T-Display</b> can set up the board and display now! See: [Setup Lilygo ESP32-S3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md)<br>
 <br>
 
