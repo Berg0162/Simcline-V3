@@ -125,7 +125,9 @@ Take your time here. Most problems with Arduino projects are caused by one small
 1. Install [Arduino IDE 2](https://www.arduino.cc/en/software#experimental-software).
 2. Install the [ESP32 board package](https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/) in Arduino IDE.
 3. Install NimBLE-Arduino version 2.5.0 or a newer compatible release. In <b>Arduino IDE</b> go to <br>`Sketch menu` -> `Include Library` -> `Manage Libraries`, search for NimBLE-Arduino and install.
-4. Install [Bolder Flight Systems ULEB128](https://github.com/bolderflight/uleb128). It is a required Simcline-V3 compile dependency and supports decoding Zwift Virtual Shifting data. ZVS-data-streams
+4. Install [Bolder Flight Systems ULEB128](https://github.com/bolderflight/uleb128).
+   Simcline-V3 uses this library to decode Zwift Virtual Shifting data. Because Simcline-V3 is compiled as one integrated library, ULEB128 must be installed
+   before compiling any Simcline-V3 example.
 5. Install [VL6180X by Pololu](https://github.com/pololu/vl6180x-arduino) Time Of Flight (**TOF**) Sensor to measure distance.
 6. Optionally Install [Adafruit OLED and GFX Libraries](https://makeabilitylab.github.io/physcomp/advancedio/oled-libraries.html), when you use an OLED display.
 7. Install the Simcline-V3 library from this repository. Download as `.zip` and extract to the Arduino `libraries` folder, or <br>use <b>Arduino IDE</b>: `Sketch menu` -> `Include library` -> `Add .Zip library`.
