@@ -97,10 +97,24 @@ This Simcline-V3 version therefore supports **Zwift Virtual Shifting**, enabling
 
 > **Important:** Zwift Virtual Shifting support requires a trainer running the firmware that explicitly supports the **Zwift Virtual Shifting** protocol.
 
-## ⚠️Virtual Shifting Code Dependency
-To run the optional Virtual Shifting BLE Service, **Simcline-V3** needs installation of the **ULEB128 Library** → Unsigned little endian base 128 implementation for encoding and decoding ZVS-data-streams
-  - [uleb128](https://github.com/bolderflight/uleb128)
+## ⚠️Library dependencies
 
+Simcline-V3 is distributed as one complete integrated Arduino library. Arduino
+compiles the library source as a unit, so all core dependencies must be
+installed even when an introductory example does not exercise every component.
+
+Required for all Simcline-V3 examples:
+
+- **NimBLE-Arduino** 2.5.0 or newer compatible 2.x version
+- **VL6180X** 1.4.0 or newer by Pololu
+- Bolder Flight Systems **ULEB128** 2.1.2 or newer
+
+Additional display dependencies:
+
+- OLEDSSD1306_128x64: Adafruit SSD1306 and Adafruit GFX Library
+- LILYGO_T_DISPLAY_S3: TFT_eSPI
+- NODISPLAY or SERIALDISPLAY: no external display library
+  
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/MITM_Parties_Explained.png" align="left" width="1000" height="500" alt="Man in the Middle"><br>
 <b>Man-In-The-Middle</b> is a powerful software engineering pattern that is applied in many software designs. Unfortunately it is also known for a negative application in communication traffic: MITM is a common type of cybersecurity attack that allows attackers to eavesdrop on the communication between two targets.
