@@ -20,7 +20,7 @@ Notice that the description on how to build SIMCLINE consists of two parts:
 + <b>Present Simcline-V3 Library</b><br>
  <br>
 
-# Simcline-V3 Library for ESP32-S3 and NimBLE-Arduino 2.x!<br>
+# Simcline-V3 Library for ESP32-S3 and NimBLE-Arduino x!<br>
 The <b>ESP32-S3</b> family contains low-cost, low-power System on a Chip (SoC) microcontrollers developed by Espressif. They combine WiFi, Bluetooth, generous memory options and a dual-core processor. These properties make the ESP32-S3 a very attractive choice for the project! See: &nbsp;[FAQ #5](docs/Frequently_Asked_Questions.md#5)<br>
 - The preferred board is the <b>Seeed Studio XIAO ESP32-S3 (plus OLED display)</b>. It has been proven to work well for SIMCLINE with the latest library. Due to its thumb-size, it definitely fits in the component box, although it needs some special care to mount it stably. For settings, wiring scheme and more, see: [Seeed Studio XIAO ESP32-S3](docs/XIAO_ESP32S3_Sense.md)
 
@@ -57,8 +57,8 @@ As a result the Arduino ino-files that the user will access, in the `Simcline-V3
 # Simcline-V3 has central configuration
 All configuration settings have been gathered in one `src/config` directory inside the installed Simcline-V3 library folder. This includes <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>-, <b>Portal</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V3 Configuration](src/config/README.md)<br>
 
-# NimBLE-Arduino 2.x
-The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero/NimBLE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V3 works only (!) with the latest version: <b>NimBLE-Arduino Version 2.x</b>!<br>
+# NimBLE-Arduino 2.5.0 or a newer
+The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero/NimBLE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V3 works only (!) with the latest version: <b>NimBLE-Arduino Version 2.5.0 or a newer</b>!<br>
 
 # FiTness Machine Service a Bluetooth Service Specification
 From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetooth Service specification. This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client. In February 2017 the service specification reached a stable version: [Fitness Machine Service 1.0](https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/) when it was adopted by the Bluetooth SIG Board of Directors. Have a look at the document to appreciate the effort of all the contributors and the companies they represented!<br>
@@ -120,12 +120,12 @@ Take your time here. Most problems with Arduino projects are caused by one small
 
 1. Install [Arduino IDE 2](https://www.arduino.cc/en/software#experimental-software).
 2. Install the [ESP32 board package](https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/) in Arduino IDE.
-3. Install NimBLE-Arduino version 2.5.0 or a newer compatible 2.x release. In <b>Arduino IDE</b> go to <br>`Sketch menu` -> `Include Library` -> `Manage Libraries`, search for NimBLE-Arduino and install.
+3. Install NimBLE-Arduino version 2.5.0 or a newer compatible release. In <b>Arduino IDE</b> go to <br>`Sketch menu` -> `Include Library` -> `Manage Libraries`, search for NimBLE-Arduino and install.
 4. Install [Bolder Flight Systems ULEB128](https://github.com/bolderflight/uleb128). It is a required Simcline-V3 compile dependency and supports decoding Zwift Virtual Shifting data. ZVS-data-streams
 5. Install [VL6180X by Pololu](https://github.com/pololu/vl6180x-arduino) Time Of Flight (**TOF**) Sensor to measure distance.
 6. Optionally Install [Adafruit OLED and GFX Libraries](https://makeabilitylab.github.io/physcomp/advancedio/oled-libraries.html), when you use an OLED display.
 7. Install the Simcline-V3 library from this repository. Download as `.zip` and extract to the Arduino `libraries` folder, or <br>use <b>Arduino IDE</b>: `Sketch menu` -> `Include library` -> `Add .Zip library`.
-8. Open the example you want to test: `File > Examples > Simcline-V3 > Smart-MITM`.
+8. Open the example you want to test: `File > examples > Simcline-V3 > Smart-MITM`.
 9. Select your ESP32 board and upload the sketch.
 10. Open Serial Monitor, power on the trainer, and only start Zwift after Smart-MITM has connected to the trainer.<br>
 
@@ -187,8 +187,9 @@ stored during the introductory Smart-MITM test. If the intended devices change,
 run Smart-MITM again to perform discovery and update the stored addresses.
 
 # Testing is Knowing!<br>
-I can understand and respect that you have some reserve: Is this really working in my situation? Better test if it is working, before buying all components and start building.
-In the Simcline-V3 Library <b>Examples</b> section you will find the applications for testing and running SIMCLINE that come with the library. The one you should start with is <b>Smart-MITM</b>. It is developed to check whether the MITM solution works with your trainer, your training app and your ESP32 board.<br>Within Arduino IDE 2 select on the top bar menu: `File > Examples > Simcline-V3 > Smart-MITM`<br>
+Better test if it is working, before buying all components and start building.
+In the Simcline-V3 Library `examples` section you will find the applications for testing and running SIMCLINE that come with the library. The one you should start with is <b>Smart-MITM</b>. It is developed to check whether the MITM solution works with your trainer, your training app and your ESP32 board.<br>
+Within Arduino IDE 2 select on the top bar menu: `File > examples > Simcline-V3 > Smart-MITM`<br>
 
 <b>Smart-MITM application, what it does in short:</b><br>
 <img src="./images/MITM_Concepts_Explained.png" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
@@ -206,7 +207,7 @@ Simcline-V3 does not require the user to select these services before compiling.
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
 # Load Smart-MITM application in Arduino IDE 2
-Within the Arduino IDE 2.x select on the top bar menu: `File > Examples > Simcline-V3 > Smart-MITM`<br>
+Within the Arduino IDE 2 select on the top bar menu: `File > examples > Simcline-V3 > Smart-MITM`<br>
 The default Simcline-V3 configuration settings for Smart-MITM when using <b>any ESP32 board (without display attached)</b> are: 
 + Display: <b>NODISPLAY</b>
 + ESP32 board: <b>YOUR_ESP32_BOARD</b>
