@@ -98,11 +98,16 @@ This Simcline-V3 version therefore supports **Zwift Virtual Shifting**, enabling
 
 ## ⚠️ Library dependencies
 
-Simcline-V3 is distributed as one complete integrated Arduino library. Arduino
-compiles the library source as a unit, so all core dependencies must be
+Simcline-V3 is distributed as one complete integrated Arduino library. Arduino compiles the library source as a unit, so all core dependencies must be
 installed even when an introductory example does not exercise every component.
 
 Required for all Simcline-V3 examples:
+
+- NimBLE-Arduino 2.5.0 or newer compatible 2.x version
+- VL6180X 1.4.0 or newer
+- Bolder Flight Systems ULEB128 2.1.2 or newer
+
+Additional display dependencies:
 
 - `OLEDSSD1306_128x64`: Adafruit SSD1306 and Adafruit GFX Library
 - `LILYGO_T_DISPLAY_S3`: TFT_eSPI
