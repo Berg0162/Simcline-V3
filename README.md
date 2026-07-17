@@ -29,7 +29,7 @@ Notice that other members of the <b>ESP32-S3</b> family can also do the job perf
 
 Simcline-V3 builds on the experience, knowledge and code of Simcline projects since <b>2020</b>. The original Simcline code has been revisited and redesigned for better stability, robustness and modularity. It was transformed to a C++ object model that hides most of Simcline's internal operation from the normal user. The Simcline community is very diverse when it comes to programming skills: many users are enthusiastic cyclists first and programmers second. The present Simcline-V3 library matches this much better! It also supports a greater variety of ESP32 boards and displays.<br>
 
-- The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero/NimBLE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V3 works only(!) with the latest version: <b>NimBLE-Arduino Version 2.5.0 or a newer</b>!<br>
+- The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero/NimBLE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V3 works only(!) with the latest version: <b>NimBLE-Arduino Version 2.5.0 or newer compatible 2.x release</b>!<br>
 
 # What is new in Simcline-V3?
 Simcline-V3 is the new self-contained SIMCLINE library line. It will exist side-by-side with Simcline-V2 during the transition period, so existing users have a reliable fallback while V3 becomes the main maintained version.
@@ -158,9 +158,9 @@ Smart-MITM tests the Bluetooth man-in-the-middle bridge between the indoor
 trainer and a training application such as Zwift. It does not operate the
 Simcline lifter and does not require a physical display.
 
-The presentation subsystem is still initialized when **NODISPLAY** is selected.
-NODISPLAY supplies a no-output presentation implementation; it does not disable
-presentation initialization.
+The presentation subsystem is still initialized when `NODISPLAY` is selected.
+`NODISPLAY` supplies a no-output presentation implementation; it does not remove
+the requirement to call `presentation->initDisplay()`.
 
 Smart-MITM permits first-time connections from unknown devices. When the trainer
 and training application connect successfully, their Bluetooth addresses are
