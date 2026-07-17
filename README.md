@@ -114,9 +114,8 @@ Take your time here. Most problems with Arduino projects are caused by one small
 2. Install the [ESP32 board package](https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/) in Arduino IDE.
 3. Install the ESP32 NimBLE-Arduino library (<b>Version 2.5.#</b>). In <b>Arduino IDE</b> go to <br>`Sketch menu` -> `Include Library` -> `Manage Libraries`, search for NimBLE-Arduino and install.
 4. Install [uleb128](https://github.com/bolderflight/uleb128) to run the optional Virtual Shifting BLE Service → Unsigned little endian base 128 implementation for encoding and decoding ZVS-data-streams
-5. 
-6. Install [Adafruit OLED and GFX Libraries](https://makeabilitylab.github.io/physcomp/advancedio/oled-libraries.html), when you use an OLED display.
-
+5. Install [VL6180X by Pololu](https://github.com/pololu/vl6180x-arduino) Time Of Flight (**TOF**) Sensor to measure distance.
+6. Optionally Install [Adafruit OLED and GFX Libraries](https://makeabilitylab.github.io/physcomp/advancedio/oled-libraries.html), when you use an OLED display.
 7. Install the Simcline-V3 library from this repository. Download as `.zip` and extract to the Arduino `libraries` folder, or <br>use <b>Arduino IDE</b>: `Sketch menu` -> `Include library` -> `Add .Zip library`.
 8. Open the example you want to test: `File > Examples > Simcline-V3 > Smart-MITM`.
 9. Select your ESP32 board and upload the sketch.
