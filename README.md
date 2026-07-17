@@ -108,12 +108,6 @@ Required for all Simcline-V3 examples:
 - `OLEDSSD1306_128x64`: Adafruit SSD1306 and Adafruit GFX Library
 - `LILYGO_T_DISPLAY_S3`: TFT_eSPI
 - `NODISPLAY` or `SERIALDISPLAY`: no external display library
-
-Additional display dependencies:
-
-- OLEDSSD1306_128x64: Adafruit SSD1306 and Adafruit GFX Library
-- LILYGO_T_DISPLAY_S3: TFT_eSPI
-- NODISPLAY or SERIALDISPLAY: no external display library
   
 # Man-In-The-Middle (MITM) software pattern<br>
 <img src= "./images/MITM_Parties_Explained.png" align="left" width="1000" height="500" alt="Man in the Middle"><br>
