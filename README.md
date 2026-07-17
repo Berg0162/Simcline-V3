@@ -20,7 +20,7 @@ Notice that the description on how to build SIMCLINE consists of two parts:
 + <b>Present Simcline-V3 Library</b><br>
  <br>
 
-# Simcline-V3 Library for ESP32-S3 and NimBLE-Arduino x!<br>
+# Simcline-V3 Library for ESP32-S3 and NimBLE-Arduino!<br>
 The <b>ESP32-S3</b> family contains low-cost, low-power System on a Chip (SoC) microcontrollers developed by Espressif. They combine WiFi, Bluetooth, generous memory options and a dual-core processor. These properties make the ESP32-S3 a very attractive choice for the project! See: &nbsp;[FAQ #5](docs/Frequently_Asked_Questions.md#5)<br>
 - The preferred board is the <b>Seeed Studio XIAO ESP32-S3 (plus OLED display)</b>. It has been proven to work well for SIMCLINE with the latest library. Due to its thumb-size, it definitely fits in the component box, although it needs some special care to mount it stably. For settings, wiring scheme and more, see: [Seeed Studio XIAO ESP32-S3](docs/XIAO_ESP32S3_Sense.md)
 
@@ -28,6 +28,8 @@ Notice that other members of the <b>ESP32-S3</b> family can also do the job perf
 - For example SIMCLINE works successfully with the <b>Lilygo ESP32-S3 T-Display</b> board, however that Lilygo-board needs another size component box! See: [Lilygo ESP32-S3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md) for settings, wiring scheme and more.<br>
 
 Simcline-V3 builds on the experience, knowledge and code of Simcline projects since <b>2020</b>. The original Simcline code has been revisited and redesigned for better stability, robustness and modularity. It was transformed to a C++ object model that hides most of Simcline's internal operation from the normal user. The Simcline community is very diverse when it comes to programming skills: many users are enthusiastic cyclists first and programmers second. The present Simcline-V3 library matches this much better! It also supports a greater variety of ESP32 boards and displays.<br>
+
+- The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero/NimBLE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V3 works only(!) with the latest version: <b>NimBLE-Arduino Version 2.5.0 or a newer</b>!<br>
 
 # What is new in Simcline-V3?
 Simcline-V3 is the new self-contained SIMCLINE library line. It will exist side-by-side with Simcline-V2 during the transition period, so existing users have a reliable fallback while V3 becomes the main maintained version.
@@ -56,9 +58,6 @@ As a result the Arduino ino-files that the user will access, in the `Simcline-V3
 
 # Simcline-V3 has central configuration
 All configuration settings have been gathered in one `src/config` directory inside the installed Simcline-V3 library folder. This includes <b>Board</b>-, <b>Debug</b>-, <b>Display</b>-, <b>NimBLE</b>-, <b>Portal</b>- and <b>Simcline</b>-configurations. Check this out:  [Simcline-V3 Configuration](src/config/README.md)<br>
-
-# NimBLE-Arduino 2.5.0 or a newer
-The Simcline project heavily leans on the <b>NimBLE-Arduino</b> library for Bluetooth handling, see: [H2Zero/NimBLE-Arduino](https://github.com/h2zero/NimBLE-Arduino). <b>NimBLE-Arduino</b> is structured for compilation with Arduino and for use with ESP32! Simcline-V3 works only (!) with the latest version: <b>NimBLE-Arduino Version 2.5.0 or a newer</b>!<br>
 
 # FiTness Machine Service a Bluetooth Service Specification
 From 2015 to 2017 the Sports and Fitness Working Group (SIG) designed a Bluetooth Service specification. This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client. In February 2017 the service specification reached a stable version: [Fitness Machine Service 1.0](https://www.bluetooth.com/specifications/specs/fitness-machine-service-1-0/) when it was adopted by the Bluetooth SIG Board of Directors. Have a look at the document to appreciate the effort of all the contributors and the companies they represented!<br>
