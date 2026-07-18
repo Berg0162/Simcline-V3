@@ -39,7 +39,7 @@ If you select in the menu bar of Arduino IDE 2 <b>Tools</b>, the settings for th
 
 <img src="../images/adafruit_products_Adafruit_ESP32_Feather_V2_Pinout.png"  alt="Feather ESP32 V2 pinout">
 
-# Electronic Components and Wiring for version 2.0
+# Electronic components and wiring for the SIMCLINE 2.0 mechanical system
 <p align=left>
 <img src="../images/FeatherESP32V2.jpg"  alt="Circuitry version 2.0">
 </p>
