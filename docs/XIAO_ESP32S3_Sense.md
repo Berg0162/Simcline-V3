@@ -39,7 +39,7 @@ If you select in the menu bar of Arduino IDE 2 <b>Tools</b>, the settings for th
 
 <img src="../images/XIAOESP32S3_Pin_Config.jpg"  alt="XIAO ESP32-S3 pinout">
 
-# Electronic Components and Wiring for version 2.0<br>
+# Electronic components and wiring for the SIMCLINE 2.0 mechanical system<br>
 
 <img src="../images/XIAOESP32S3_Sense_Wiring.jpg"  alt="Circuitry version 2.0">
 
