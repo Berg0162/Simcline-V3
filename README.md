@@ -223,8 +223,7 @@ The default Simcline-V3 configuration settings for Smart-MITM when using <b>any 
 
 Optionally:
 + Users with a <b>XIAO ESP32-S3</b> can set up their board and optionally the display now! See: [Setup XIAO ESP32-S3 plus OLED display](docs/XIAO_ESP32S3_Sense.md)
-+ Users with a <b>Lilygo ESP32-S3 T-Display</b> can set up the board and display now! See: [Setup Lilygo ESP32-S3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md)<br>
-<br>
++ Users with a <b>Lilygo ESP32-S3 T-Display</b> can set up the board and display now! See: [Setup Lilygo ESP32-S3 T-Display](docs/LILYGO%20ESP32S3%20T-Display.md) <br>
 
 <b>Smart-MITM</b> is default in Debug mode: using Serial Monitor (logging on the PC-screen) to show you what is happening!<br>
 
