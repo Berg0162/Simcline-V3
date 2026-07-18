@@ -99,7 +99,7 @@ This Simcline-V3 version therefore supports **Zwift Virtual Shifting**, enabling
 
 ## ⚠️ Library dependencies
 
-**Simcline-V3** is distributed as one **complete integrated Arduino library**. Arduino compiles the library source as an **unit**, so all core dependencies must be
+**Simcline-V3** is distributed as one **complete integrated Arduino library**. Arduino compiles the library source as a **unit**, so all core dependencies must be
 installed even when an introductory example does not exercise every component.
 
 **Required** for all Simcline-V3 examples:
@@ -125,14 +125,14 @@ Take your time here. Most problems with Arduino projects are caused by one small
 
 1. Install [Arduino IDE 2](https://www.arduino.cc/en/software#experimental-software).
 2. Install the [ESP32 board package](https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/) in Arduino IDE.
-3. Install NimBLE-Arduino version 2.5.0 or a newer compatible release. In <b>Arduino IDE</b> go to <br>`Sketch menu` -> `Include Library` -> `Manage Libraries`, search for NimBLE-Arduino and install.
+3. Install NimBLE-Arduino version 2.5.0 or a newer compatible 2.x release. In <b>Arduino IDE</b> go to <br>`Sketch menu` -> `Include Library` -> `Manage Libraries`, search for NimBLE-Arduino and install.
 4. Install [Bolder Flight Systems ULEB128](https://github.com/bolderflight/uleb128).
    Simcline-V3 uses this library to decode Zwift Virtual Shifting data. Because Simcline-V3 is compiled as one integrated library, ULEB128 must be installed
    before compiling any Simcline-V3 example.
-5. Install [VL6180X by Pololu](https://github.com/pololu/vl6180x-arduino) Time Of Flight (**TOF**) Sensor to measure distance.
+5. Install [VL6180X by Pololu](https://github.com/pololu/vl6180x-arduino), used with the VL6180X Time-of-Flight distance sensor.
 6. Optionally Install [Adafruit OLED and GFX Libraries](https://makeabilitylab.github.io/physcomp/advancedio/oled-libraries.html), when you use an OLED display.
 7. Install the Simcline-V3 library from this repository. Download as `.zip` and extract to the Arduino `libraries` folder, or <br>use <b>Arduino IDE</b>: `Sketch menu` -> `Include library` -> `Add .Zip library`.
-8. Open the example you want to test: `File > examples > Simcline-V3 > Smart-MITM`.
+8. Open the example you want to test: `File > Examples > Simcline-V3 > Smart-MITM`.
 9. Select your ESP32 board and upload the sketch.
 10. Open Serial Monitor, power on the trainer, and only start Zwift after Smart-MITM has connected to the trainer.<br>
 
@@ -196,7 +196,7 @@ run Smart-MITM again to perform discovery and update the stored addresses.
 # Testing is Knowing!<br>
 Better test if it is working, before buying all components and start building.
 In the Simcline-V3 Library `examples` section you will find the applications for testing and running SIMCLINE that come with the library. The one you should start with is <b>Smart-MITM</b>. It is developed to check whether the MITM solution works with your trainer, your training app and your ESP32 board.<br>
-Within Arduino IDE 2 select on the top bar menu: `File > examples > Simcline-V3 > Smart-MITM`<br>
+Within Arduino IDE 2 select on the top bar menu: `File > Examples > Simcline-V3 > Smart-MITM`<br>
 
 <b>Smart-MITM application, what it does in short:</b><br>
 <img src="./images/MITM_Concepts_Explained.png" align="middle" width="1000" height="500" alt="Simcline in the Middle"><br>
@@ -214,8 +214,8 @@ Simcline-V3 does not require the user to select these services before compiling.
 + The <b>Simcline MITM</b> code is connecting both sides at the same time: a full-blown working bridge<br clear="left">
 
 # Load Smart-MITM application in Arduino IDE 2
-Within the Arduino IDE 2 select on the top bar menu: `File > examples > Simcline-V3 > Smart-MITM`<br>
-The default Simcline-V3 configuration settings for Smart-MITM when using <b>any ESP32 board (without display attached)</b> are: 
+Within the Arduino IDE 2 select on the top bar menu: `File > Examples > Simcline-V3 > Smart-MITM`<br>
+The GitHub release defaults for an initially unconfigured board and no attached display are:
 + Display: <b>NODISPLAY</b>
 + ESP32 board: <b>YOUR_ESP32_BOARD</b>
 + NimBLE: dynamic trainer discovery and mirrored BLE server
