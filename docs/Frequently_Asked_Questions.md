@@ -73,8 +73,8 @@ It is normally sufficient to close Zwift and competing apps; the laptop itself d
 
 # [7]
 <b>Will Simcline-V3 work out of the box with my ESP32-S3 development board?</b><br>
-
-In most cases, yes, provided that the ESP32-S3 board has at least **4 MB of flash memory**; **8 MB is preferred**. PSRAM is optional. In the Arduino IDE **Tools** menu, select a partition scheme that provides an application partition of at least **3 MB**.
+Supported board types can work with the supplied board definitions. Other ESP32-S3 boards require a completed `YOUR_ESP32_Board.h` definition and therefore do not work entirely out of the box.
+The ESP32-S3 board needs at least **4 MB of flash memory**; **8 MB is preferred**. PSRAM is optional. In the Arduino IDE **Tools** menu, select a partition scheme that provides an application partition of at least **3 MB**.
 
 Start with the **Smart-MITM** application to confirm that the Bluetooth MITM concept works with your board. A complete SIMCLINE setup also requires a board definition for the hardware connections. Complete the ESP32 board class in:
 
@@ -103,20 +103,20 @@ Several factors can cause the grade shown by Simcline-V3 to differ temporarily f
 
 1. **Trainer Difficulty:** Zwift applies its Trainer Difficulty setting to the gradient sent to the controllable trainer. At 50%, an uphill gradient is typically sent at half its displayed magnitude; at 100%, the full uphill gradient is sent. This setting changes the simulated gradient and therefore the gearing needed for a climb, but it does not directly scale the rider's power. Simcline-V3 reacts to the value that Zwift sends to the trainer.
 
-2. **Timing and trainer response:** A trainer cannot change resistance instantaneously. Zwift, the trainer, the Bluetooth connection, and the actuator each introduce some delay. To accommodate for the trainer delay, the Zwift app sends gradients 1 to 1.5 second earlier(!) than what you observe on your screen (the displayed road grade value on the Zwift window). SIMCLINE may therefore begin moving before the on-screen grade appears to match, particularly on rapidly rolling terrain. The precise timing varies by trainer, firmware, Zwift version, and connection method. When riding rolling hills, in rapid succession, like Zwift's **Titans Grove**, this is most visible! Notice that the responsiveness is benefiting!
+2. **Timing and trainer response:** A trainer cannot change resistance instantaneously. Zwift, the trainer, the Bluetooth connection, and the actuator each introduce some delay. In observed setups, Zwift has sometimes sent gradient changes approximately 1–1.5 seconds before the corresponding value becomes visible on screen. SIMCLINE may therefore begin moving before the on-screen grade appears to match, particularly on rapidly rolling terrain. The precise timing varies by trainer, firmware, Zwift version, and connection method. When riding rolling hills, in rapid succession, like Zwift's **Titans Grove**, this is most visible! Notice that the responsiveness is benefiting!
 
 3. **Downhill behavior:** Zwift can reduce the magnitude of negative gradients sent to a trainer. As a commonly observed example, an on-screen grade of -8% may result in approximately -4% being sent. This behavior can change and may depend on Zwift settings or trainer support, so regard the exact ratio as observed behavior rather than a protocol guarantee. Simcline-V3 displays and responds to the grade value it receives.
 
 4. **Initial simulation command:** Zwift may send a non-zero simulation value (randomly between 2.0 and 5.0) while preparing a ride. Simcline-V3 can respond to this command before the selected ride has started, however, Simcline-V3 filters the early values and keeps the actuator at level (flat road).
 
-5. **Grade-Change-Factor:** Simcline-V3 has its own Grade-Change-Factor, originally introduced to reduce actuator movement when using a noisy or slow actuator. Its default value is 100%, and it can be changed dynamically with the Simcline app. The factor affects the actuator movement and displayed Simcline grade; the original grade command is forwarded to the trainer, so trainer resistance is not modified by this setting.
+5. **Grade-Change-Factor:** Simcline-V3 has its own Grade-Change-Factor, originally introduced to reduce actuator movement when using a noisy or slow actuator. Its default value is 100%, and it can be changed through the Simcline-V3 startup WiFi configuration portal. The factor affects the actuator movement and displayed Simcline grade; the original grade command is forwarded to the trainer, so trainer resistance is not modified by this setting.
 
 When the Zwift and Simcline-V3 displays differ, first check Zwift's Trainer Difficulty and the Simcline Grade-Change-Factor. Short-lived differences during grade transitions can be normal. Other cycling apps may apply their own grade-scaling and timing rules; do not assume that Rouvy, MyWhoosh, and Zwift behave identically.
 
 # [9]
 <b>How do I manage changed device addresses?</b><br>
 
-When **Smart-MITM** runs, it detects the Bluetooth device addresses of the trainer and the Zwift device and stores them in ESP32-S3 NVS (Non-Volatile Storage). **Smart-Simcline** uses the stored addresses to reconnect to the intended client and server.
+When **Smart-MITM** runs, it detects the Bluetooth device addresses of the trainer and the Zwift device and stores them in ESP32 non-volatile storage (NVS). **Smart-Simcline** uses the stored addresses to reconnect to the intended client and server.
 
 To inspect or change the addresses stored in NVS, use the **`Test_Board_plus_NVS`** tool in `Simcline-V3/examples`. An address must have both the correct value and the correct address type to be resolved during connection.
 

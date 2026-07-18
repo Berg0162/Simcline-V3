@@ -8,7 +8,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 // Define the board here, that is part of your system setup
 //#define XIAO_ESP32S3
 //#define LILYGO_T_DISPLAY_S3
-#define ADAFRUIT_Feather_ESP32_S3
+#define ADAFRUIT_FEATHER_ESP32_S3
 //#define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
@@ -26,10 +26,10 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 ## Arduino IDE 2.x
-The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32-S3</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32-S3](https://learn.adafruit.com/adafruit-esp32-s3-feather))<br>
+The present code is developed on Arduino IDE 2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32-S3</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32-S3](https://learn.adafruit.com/adafruit-esp32-s3-feather)<br>
 
 ## Before you start
-Select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the specific type of your <b>Adafruit Feather ESP32-S3</b> processor!
+Select in the menu bar of Arduino IDE 2 <b>Tools</b>, the settings for the specific type of your <b>Adafruit Feather ESP32-S3</b> processor!
 
 # Feather ESP32-S3 pinout
 
@@ -61,7 +61,11 @@ A small one channel motor driver for 12 V (6.5 - 48 V) and 3,6 Amperes max. This
 - Internal SRAM: 512 KB
 - Connectivity: Wi-Fi 4 (2.4 GHz) + Bluetooth LE
 
-For future development with Simcline-V3, you should instead look for an ESP32-S3 board with **8 MB Flash** and **8 MB PSRAM** (such as the XIAO ESP32-S3), because neither of these Feather variants provides both large Flash and large PSRAM. However, both boards will work (for now) with an **APP Partition Scheme** of at least **3 MB**! Notice: **I have NOT tested these boards**.<br>
+For future development with Simcline-V3, you should instead look for an ESP32-S3 board with **8 MB Flash** and **8 MB PSRAM** (such as the XIAO ESP32-S3), because neither of these Feather variants provides both large Flash and large PSRAM. However, both boards will work (for now) with an **APP Partition Scheme** of at least **3 MB**! <br>
+> **Support status:** This board definition is supplied for evaluation, but the
+> listed Adafruit Feather ESP32-S3 variants have not yet been operationally
+> tested with the complete Simcline-V3 feature set.
+
 [Adafruit Feather ESP32-S3](https://learn.adafruit.com/adafruit-esp32-s3-feather/overview)
 
 <b>OLED display blue/white 128x64 pixels (0,96 Inch, I2C)</b><br>

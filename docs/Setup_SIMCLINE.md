@@ -6,6 +6,7 @@ First test the ESP32-S3 board of your choice with the display attached to it, af
 
 # Setup your ESP32-S3 board for Simcline-V3
 The board and display to work with can be activated in Simcline-V3 with the right settings, see folder: `src/config`<br>
+The following example selects the recommended XIAO ESP32-S3 with an SSD1306 OLED display. Select exactly one board and one display appropriate for your hardware.
 
 + Open file, edit and save(!): `src/config/configBoard.h`
 ```C++
@@ -13,7 +14,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 // Define the board here, that is part of your system setup
 #define XIAO_ESP32S3
 //#define LILYGO_T_DISPLAY_S3
-//#define ADAFRUIT_Feather_ESP32_S3
+//#define ADAFRUIT_FEATHER_ESP32_S3
 //#define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
@@ -29,6 +30,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 //#define SERIALDISPLAY
 // ------------------------------------------------------------------------------------------------
 ```
+> Ensure that only one board macro and one display macro are enabled.<br>
 + When you want another board or display than is supplied with the standard release of Simcline-V3, a proficient programmer/user can implement Concrete Classes for ESP32-S3-board-type and Display-type of his/her choice easily without interfering with the Simcline BLE operational code. A dedicated program for creating "YOURDISPLAY" is offered in `examples/Test_Board_plus_Display` to help you with the task!
 
 # Connect wiring of the TOF-sensor to your ESP32-S3 board
@@ -48,7 +50,7 @@ Test the <b>DRV8871 plus Actuator</b> with `examples/Test_Board_plus_DRV8871`.
 # Setup and mount SIMCLINE mechanically...
 Actuator attached to the body and powered
 
-# Add the TOF-sensor to the mechanic setup (in the component box)
+# Add the TOF-sensor to the mechanical setup (in the component box)
 Check it can measure the distance correctly using `examples/Test_Board_plus_VL6180X`<br>
 
 Note down the provisional <b>MAXPOSITION</b> and <b>MINPOSITION</b> values of the TOF-sensor reaching the <b>top</b> position and <b>lowest</b> position!<br>
@@ -82,20 +84,23 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 // Notice that unrestricted movement at the boundaries can damage the Actuator and/or construction!
 // The following values are respected by the software and will (in normal cases!) never be exceeded!
 #define MINPOSITION 100 // VL6180X highest value top microswitch activated to mechanically stop operation
-#define MAXPOSITION 350 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
+#define MAXPOSITION 200 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
 ```
-Now you should have a fully equiped and operational SIMCLINE (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
+Simcline-V3 configures the VL6180X with range scaling factor 3. This permits measurements beyond the sensor's default range at reduced resolution. Determine MINPOSITION and MAXPOSITION experimentally with the actual reflection target, lighting, mounting geometry, and mechanical limit switches.
+Now you should have a fully equipped and operational SIMCLINE (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
 It is time to run `examples/Test_Fully_Equiped_Setup`.<br>
-During operation of this Full-Setup test-program you will have most probably to finetune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `src/config/configSimcline.h`. **Don't forget to save the file before(!) you run the Full-Setup test-program again, otherwise the new values will not be effective!**
+During operation of this Full-Setup test-program you will have most probably to fine-tune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `src/config/configSimcline.h`. **Don't forget to save the file before(!) you run the Full-Setup test-program again, otherwise the new values will not be effective!**
 
-# Operational SIMCLINE passed the tests and is finetuned
-Open now `examples/Smart-Simcline` program, compile and run!
+# Operational SIMCLINE passed the tests and is fine-tuned
+Before running Smart-Simcline, first run Smart-MITM and complete a successful connection with the intended trainer and training application. Smart-MITM stores both Bluetooth addresses in NVS. Smart-Simcline then uses these stored addresses
+to reconnect to the intended devices.<br>
+**Smart-Simcline** reconnects to the trainer stored in NVS and advertises its mirrored server to the training application.
 SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuator movements with help of the TOF-sensor. It will scan for your trainer and advertise its server-side to be connected to Zwift... from now on it will handle the Bluetooth MITM and translate changing road grades to actuator movements.<br>
 See: [how road grades are handled FAQ #8](Frequently_Asked_Questions.md#8)<br>
 See: [when devices have changed FAQ #9](Frequently_Asked_Questions.md#9)<br>
 
 # Production build
-After all testing is complete—including verification with the Serial Monitor—deactivate `GLOBAL_DEBUG` in `config/configDebug.h` before compiling `Smart-Simcline` for standalone use with SIMCLINE 2.0. Do this **only** for the final production build that will run without an USB connection to the computer or Arduino IDE. Only the display will give you feedback during operation!
+After all testing is complete—including verification with the Serial Monitor—deactivate `GLOBAL_DEBUG` in `src/config/configDebug.h` before compiling `Smart-Simcline` for standalone operation on the SIMCLINE 2.0 mechanical system. Do this **only** for the final production build that will run without a USB connection to the computer or Arduino IDE. Only the display will give you feedback during operation!
 ```C++
 // ------------------------------------------------------------------------------------------------
 // COMPILER DIRECTIVE to allow/suppress ALL DEBUG messages that help to debug code sections

@@ -8,7 +8,7 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 // Define the board here, that is part of your system setup
 //#define XIAO_ESP32S3
 //#define LILYGO_T_DISPLAY_S3
-//#define ADAFRUIT_Feather_ESP32_S3
+//#define ADAFRUIT_FEATHER_ESP32_S3
 #define ADAFRUIT_FEATHER_ESP32_V2
 //#define YOUR_ESP32_BOARD
 ```
@@ -26,10 +26,10 @@ The board and display to work with can be activated in Simcline-V3 with the righ
 <b>Warning</b>: When a new version of Simcline-V3 is installed in Arduino IDE 2 it will override <b>ALL</b> files of a previous version! If you have made modifications in a file that is part of `Simcline-V3` --> <b>Make</b> a <b>copy</b> of the file(s) in question <b>BEFORE</b> you <b>install</b> a new library version!
 
 ## Arduino IDE 2.x
-The present code is developed on Arduino IDE 2.2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32 V2</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2/arduino-ide-setup)<br>
+The present code is developed on Arduino IDE 2. Notice that you will need an Arduino IDE that is tailored for this specific <b>Adafruit Feather ESP32 V2</b> processor! Please follow the installation instructions for the [Adafruit Feather ESP32 V2](https://learn.adafruit.com/adafruit-esp32-feather-v2/arduino-ide-setup)<br>
 
 ## Before you start
-If you select in the menu bar of Arduino IDE 2.2 <b>Tools</b>, the settings for the <b>Adafruit Feather ESP32 V2</b> processor and the project are the following:
+If you select in the menu bar of Arduino IDE 2 <b>Tools</b>, the settings for the <b>Adafruit Feather ESP32 V2</b> processor and the project are the following:
 <p align=center>
 <img src="../images/Feather_ESP32_V2_Tools_Settings.jpg" align="left" width="400" height="650" alt="Feather ESP32 V2 Tools Menu">
 </p>

@@ -1,7 +1,6 @@
 ## What Is New In Simcline-V3
 
-Simcline-V3 is the next full version of SIMCLINE. It is planned as a
-self-contained library and repository with its own examples, configuration,
+Simcline-V3 is a self-contained library and repository with its own examples, configuration,
 documentation, images, and project files.
 
 Simcline-V3 will exist side-by-side with Simcline-V2 during the transition
@@ -141,6 +140,8 @@ Important components:
 - `src/lifter/`  
   Contains the actuator and VL6180X Time-of-Flight based lifter control code.
 
+> Simcline-V3 is compiled as one integrated Arduino library. All core dependencies listed in the central README are therefore required even when an example does not instantiate the lifter or exercise virtual shifting.
+
 ## Supported And Observed BLE Traffic
 
 The mirror itself is designed to be general. It does not require a fully
@@ -163,12 +164,11 @@ development direction.
 
 The practical transition plan is:
 
-1. Publish Simcline-V3 as a complete library with examples and documentation.
-2. Test the dynamic BLE mirror with a wider range of smart trainers.
-3. Keep Simcline-V2 available as a fallback during the transition.
-4. Move new development effort to Simcline-V3.
-5. Archive Simcline-V2 after the V3 line has proven stable enough for normal
-   users.
+1. Published or prepared as a complete library.
+2. Continue testing with more trainers.
+3. Keep V2 available during transition.
+4. Move new development to V3.
+5. Archive V2 after V3 proves sufficiently stable.
 
 This approach avoids a disruptive replacement while still giving the new
 architecture enough space to become the main SIMCLINE version.
