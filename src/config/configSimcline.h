@@ -17,7 +17,6 @@
 // Correction for measuring plane difference and midth wheel axis position (1 cm offset is an MEASUREOFFSET of about 40)
 #define MEASUREOFFSET 10
 
-
 // -------------------------- WARNING ------------------------------------------------------------
 // The following VL6180X sensor values are a 100% construction specific and
 // should be experimentally determined, when the Actuator AND the VL6180X sensor are mounted!
@@ -26,8 +25,8 @@
 // The microswitches are mechanically controlled, and NOT by the software --> should be fail safe!
 // Notice that unrestricted movement at the boundaries can damage the Actuator and/or construction!
 // The following values are respected by the software and will (in normal cases!) never be exceeded!
-#define MINPOSITION 40  // VL6180X highest value top microswitch activated to mechanically stop operation
-#define MAXPOSITION 186 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
+#define MINPOSITION 100  // VL6180X highest value top microswitch activated to mechanically stop operation
+#define MAXPOSITION 200 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
 
 // -------------------------- WARNING ------------------------------------------------------------
 // Operational boundaries of the VL6180X sensor are used/set in class Lifter after calling its "init".
