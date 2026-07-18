@@ -88,7 +88,7 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 ```
 Simcline-V3 configures the VL6180X with range scaling factor 3. This permits measurements beyond the sensor's default range at reduced resolution. Determine MINPOSITION and MAXPOSITION experimentally with the actual reflection target, lighting, mounting geometry, and mechanical limit switches.<br>
 Now you should have a fully equipped and operational SIMCLINE (TOF-sensor/display/driver/Actuator) with hardware components tested separately!<br>
-It is time to run `examples/Test_Fully_Equiped_Setup`.<br>
+It is time to run `examples/Test_Fully_Equipped_Setup`.<br>
 During operation of this Full-Setup test-program you will have most probably to fine-tune the <b>MINPOSITION</b> and <b>MAXPOSITION</b>. Repeat, if necessary, by editing `src/config/configSimcline.h`. **Don't forget to save the file before(!) you run the Full-Setup test-program again, otherwise the new values will not be effective!**
 
 # Operational SIMCLINE passed the tests and is fine-tuned
