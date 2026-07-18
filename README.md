@@ -17,8 +17,9 @@ Notice that the description on how to build SIMCLINE consists of two parts:
 <img src="https://www.instructables.com/assets/img/instructables-logo-v2.png" width="32" height="48" align="left" alt="Instructables"> &nbsp; [SIMCLINE 2.0 Instructables](https://www.instructables.com/SIMCLINE-20-Easy-Simulation-of-Road-Incline/) 
 <br clear="left">
 
-+ <b>Present Simcline-V3 Library</b><br>
- <br>
++ <b>This Simcline-V3 Library</b><br>
+
+---
 
 # Simcline-V3 Library for ESP32-S3 and NimBLE-Arduino!<br>
 The <b>ESP32-S3</b> family contains low-cost, low-power System on a Chip (SoC) microcontrollers developed by Espressif. They combine WiFi, Bluetooth, generous memory options and a dual-core processor. These properties make the ESP32-S3 a very attractive choice for the project! See: &nbsp;[FAQ #5](docs/Frequently_Asked_Questions.md#5)<br>
@@ -98,16 +99,16 @@ This Simcline-V3 version therefore supports **Zwift Virtual Shifting**, enabling
 
 ## ⚠️ Library dependencies
 
-Simcline-V3 is distributed as one complete integrated Arduino library. Arduino compiles the library source as a unit, so all core dependencies must be
+**Simcline-V3** is distributed as one **complete integrated Arduino library**. Arduino compiles the library source as an **unit**, so all core dependencies must be
 installed even when an introductory example does not exercise every component.
 
-Required for all Simcline-V3 examples:
+**Required** for all Simcline-V3 examples:
 
 - NimBLE-Arduino 2.5.0 or newer compatible 2.x version
 - VL6180X 1.4.0 or newer
 - Bolder Flight Systems ULEB128 2.1.2 or newer
 
-Additional display dependencies:
+**Additional** display dependencies:
 
 - `OLEDSSD1306_128x64`: Adafruit SSD1306 and Adafruit GFX Library
 - `LILYGO_T_DISPLAY_S3`: TFT_eSPI
@@ -135,8 +136,8 @@ Take your time here. Most problems with Arduino projects are caused by one small
 9. Select your ESP32 board and upload the sketch.
 10. Open Serial Monitor, power on the trainer, and only start Zwift after Smart-MITM has connected to the trainer.<br>
 
-> When Simcline-V3 is installed through Arduino Library Manager, the required core dependencies are installed automatically. After a manual or ZIP installation,
-use Library Manager to verify that all dependencies listed above are installed.
+> When Simcline-V3 is installed through Arduino **Library Manager**, the required core dependencies are installed automatically. After a manual or ZIP installation,
+use **Library Manager** to verify that all dependencies listed above are installed.
 
 # How to make it work?<br>
 The requirements in this phase are simple: 
