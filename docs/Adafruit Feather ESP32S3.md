@@ -35,7 +35,7 @@ Select in the menu bar of Arduino IDE 2 <b>Tools</b>, the settings for the speci
 
 <img src="../images/adafruit_Feather_ESP32S3.png"  alt="Feather ESP32-S3 pinout">
 
-# Electronic Components and Wiring for version 2.0
+# Electronic components and wiring for the SIMCLINE 2.0 mechanical system
 <p align=left>
 <img src="../images/Feather_ESP32S3_Wiring.png"  alt="Circuitry version 2.0">
 </p>
