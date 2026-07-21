@@ -301,3 +301,5 @@ When you are pleased with the results so far, you can consider setting up the co
 
 + Embedded Control System <br>
 [Setup Simcline Control System](docs/Setup_SIMCLINE.md)<br>
+
+# See Also other [Github projects](https://github.com/Berg0162/) by the maker.
