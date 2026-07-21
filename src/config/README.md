@@ -6,7 +6,7 @@ Simcline-V3 <b>Board</b> configuration options:
 // Define the board here, that is part of your system setup
 //#define XIAO_ESP32S3
 //#define LILYGO_T_DISPLAY_S3
-//#define ADAFRUIT_Feather_ESP32_S3
+//#define ADAFRUIT_FEATHER_ESP32_S3
 //#define ADAFRUIT_FEATHER_ESP32_V2
 #define YOUR_ESP32_BOARD
 ```
@@ -52,23 +52,24 @@ Simcline-V3 <b>Mechanical SIMCLINE 2.0</b> configuration options:
 #define RGVMAX 22000 // 20%  // +20% // Always is RGVMAX > 20000 (flat road level)
 //------------------------------------------------- WARNING --------------------------------------------------------------
 
-// Correction for measuring plane difference and midth wheel axis position (1 cm offset is an MEASUREOFFSET of about 40)
+// Correction for the difference between the measuring plane and the middle
+// wheel-axis position. A 1 cm offset corresponds to a MEASUREOFFSET of about 40.
 #define MEASUREOFFSET 0
 
 // -------------------------- WARNING ------------------------------------------------------------
-// The following VL6180X sensor values are a 100% construction specific and
+// The following VL6180X sensor values are entirely construction specific and
 // should be experimentally determined, when the Actuator AND the VL6180X sensor are mounted!
 // ------>>>> Test manually and use example/test sketches that go with the VL6180X sensor! <<<<---
 // Microswitches should limit physically/mechanically the upper and lower position of the Actuator!
 // The microswitches are mechanically controlled, and NOT by the software --> should be fail safe!
 // Notice that unrestricted movement at the boundaries can damage the Actuator and/or construction!
 // The following values are respected by the software and will (in normal cases!) never be exceeded!
-#define MINPOSITION 10  // VL6180X highest value top microswitch activated to mechanically stop operation
-#define MAXPOSITION 195 // VL6180X lowest value bottom microswitch activated to mechanically stop operation
+#define MINPOSITION 100  // VL6180X highest value top microswitch activated to mechanically stop operation
+#define MAXPOSITION 200  // VL6180X lowest value bottom microswitch activated to mechanically stop operation
 
 // -------------------------- WARNING ------------------------------------------------------------
 // Operational boundaries of the VL6180X sensor are used/set in class Lifter after calling its "init".
-// A safe measuring range of at least 30 cm of total movement is recommended for the VL6180X sensor setting!
+// A safe measuring range of up to 30 cm of total movement is recommended for the VL6180X sensor setting!
 //
 // Bandwidth is used in the code to take measuring errors and a safe margin into account when reaching
 // the above defined max or min positions of the construction! The software does painstakingly respect

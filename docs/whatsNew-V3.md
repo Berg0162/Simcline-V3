@@ -3,7 +3,7 @@
 Simcline-V3 is a self-contained library and repository with its own examples, configuration,
 documentation, images, and project files.
 
-Simcline-V3 will exist side-by-side with Simcline-V2 during the transition
+Simcline-V3 exists side-by-side with Simcline-V2 during the transition
 period. This gives existing users a stable fallback while the new dynamic BLE
 architecture is tested with more smart trainers. When V3 has proven itself in
 daily use, Simcline-V2 can be archived as the previous generation.
@@ -63,7 +63,7 @@ from any phone, tablet, or computer with a browser.
 The preferred board for Simcline-V3 is the **Seeed Studio XIAO ESP32-S3**.<br>
 <img src="../images/XIAO_ESP32S3.png" width="200" height="200" ALIGN="left" alt="XIAO ESP32-S3">
 It is currently the best fit for this project because it is:
-- low cost small powerhouse [Webshop](https://www.tinytronics.nl/en/development-boards/microcontroller-boards/with-wi-fi/seeed-studio-xiao-esp32-s3)
+- a low-cost, compact, powerful board [Webshop](https://www.tinytronics.nl/en/development-boards/microcontroller-boards/with-wi-fi/seeed-studio-xiao-esp32-s3)
 - widely available
 - based on ESP32-S3
 - equipped with enough memory headroom for NimBLE, the display layer, the lifter

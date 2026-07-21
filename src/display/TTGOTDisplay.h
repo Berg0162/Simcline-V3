@@ -12,7 +12,7 @@
 
  Many have invested time and resources providing open source code!
  
-        MIT license, check LICENSE for more information
+        GPLv3 license, check LICENSE for more information
         All text must be included in any redistribution
 *********************************************************************/
 

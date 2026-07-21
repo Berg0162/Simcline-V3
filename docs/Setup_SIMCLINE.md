@@ -72,11 +72,12 @@ Insert <b>RGVMIN</b>, <b>RGVMAX</b>, <b>MINPOSITION</b> and <b>MAXPOSITION</b> v
 #define RGVMAX 22000 // 20%  // +20% // Always is RGVMAX > 20000 (flat road level)
 //------------------------------------------------- WARNING --------------------------------------------------------------
 
-// Correction for measuring plane difference and midth wheel axis position (1 cm offset is an MEASUREOFFSET of about 40)
+// Correction for the difference between the measuring plane and the middle
+// wheel-axis position. A 1 cm offset corresponds to a MEASUREOFFSET of about 40.
 #define MEASUREOFFSET 0
 
 // -------------------------- WARNING ------------------------------------------------------------
-// The following VL6180X sensor values are a 100% construction specific and
+// The following VL6180X sensor values are entirely construction specific and
 // should be experimentally determined, when the Actuator AND the VL6180X sensor are mounted!
 // ------>>>> Test manually and use example/test sketches that go with the VL6180X sensor! <<<<---
 // Microswitches should limit physically/mechanically the upper and lower position of the Actuator!
@@ -95,7 +96,7 @@ During operation of this Full-Setup test-program you will have most probably to 
 Before running Smart-Simcline, first run Smart-MITM and complete a successful connection with the intended trainer and training application. Smart-MITM stores both Bluetooth addresses in NVS. Smart-Simcline then uses these stored addresses
 to reconnect to the intended devices.<br>
 **Smart-Simcline** reconnects to the trainer stored in NVS and advertises its mirrored server to the training application.
-SIMCLINE should recognise the TOF-sensor, motor driver board and test the actuator movements with help of the TOF-sensor. It will scan for your trainer and advertise its server-side to be connected to Zwift... from now on it will handle the Bluetooth MITM and translate changing road grades to actuator movements.<br>
+Smart-Simcline recognizes and tests the TOF sensor, motor-driver board, and actuator. It then reconnects to the trainer stored in NVS and advertises the mirrored trainer server to the training application. From that point onward it handles the Bluetooth MITM traffic and translates road-grade changes into actuator movements.<br>
 See: [how road grades are handled FAQ #8](Frequently_Asked_Questions.md#8)<br>
 See: [when devices have changed FAQ #9](Frequently_Asked_Questions.md#9)<br>
 
