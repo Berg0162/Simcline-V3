@@ -4,6 +4,10 @@
 #include "IDisplay.h"
 static const char* IDISPLAY = "Serial Monitor";
 
+#ifndef DEBUG
+#error SERIALDISPLAY requires both GLOBAL_DEBUG and local DEBUG so that USB Serial is initialized.
+#endif
+
 class SERIALDisplay : public IDisplay {
   private:
 
@@ -14,7 +18,7 @@ class SERIALDisplay : public IDisplay {
     void initDisplay() override {
         // SERIALDisplay implementation
         Serial.println("Init Display (-> serial monitor)...");
-	delay(250);
+		delay(250);
     }
 
     void setDisplayBrightness(bool updown) override {

@@ -13,8 +13,6 @@ class NODisplay : public IDisplay {
 
     void initDisplay() override {
         // Display implementation
-        Serial.println("NO display to initialize...");
-	delay(250);
     }
 
     void setDisplayBrightness(bool updown) override {

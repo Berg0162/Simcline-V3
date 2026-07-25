@@ -4,6 +4,9 @@
 #include "IDisplay.h"
 static const char* IDISPLAY = "Your Display";
 
+// This placeholder implementation writes to USB Serial and therefore
+// requires effective DEBUG until replaced with a custom display implementation.
+
 class YOURDisplay : public IDisplay {
   private:
 
@@ -14,7 +17,7 @@ class YOURDisplay : public IDisplay {
     void initDisplay() override {
         // SERIALDisplay implementation for your display
         Serial.println("Init Display (-> serial monitor)...");
-	delay(250);
+		delay(250);
     }
 
     void setDisplayBrightness(bool updown) override {

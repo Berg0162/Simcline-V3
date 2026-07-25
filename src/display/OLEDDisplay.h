@@ -49,13 +49,15 @@ class OLEDDisplay : public IDisplay {
 
     void initDisplay() override {
 #ifdef SPI_CONNECT
-        if(!display.begin(SSD1306_SWITCHCAPVCC)) 
+        if(!display.begin(SSD1306_SWITCHCAPVCC)) {
 #else
-	if (!display.begin(SSD1306_SWITCHCAPVCC, OLED_I2C_ADDRESS))
+		if (!display.begin(SSD1306_SWITCHCAPVCC, OLED_I2C_ADDRESS)) {
 #endif
-	{
+#ifdef DEBUG
+			// Error state only communicated when DEBUG is activated !!
             Serial.println("SSD1306 allocation failed");
-            for(;;); // Hang
+#endif
+            for(;;); // Always stop after initialization failure
         } else  {
             // Show initial display buffer contents with the screen ADAFRUIT Splash screen
             // the library initializes this (edit the splash.h in the library).
@@ -89,7 +91,6 @@ class OLEDDisplay : public IDisplay {
         if (isTrainer) display.drawBitmap(110, 1, power_icon16x16, 16, 16, SSD1306_WHITE);
         else display.drawBitmap(110, 1, power_icon16x16, 16, 16, SSD1306_BLACK); // Clear this Icon field
         if (isLaptop) display.drawBitmap(0, 0, zwift_icon16x16, 16, 16, SSD1306_WHITE);
-        /*if (isPhone) display.drawBitmap(0, 0, mobile_icon16x16, 16, 16, SSD1306_WHITE);*/
         display.display();
     }
 
