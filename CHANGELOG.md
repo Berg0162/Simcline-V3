@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.1] - 2026-11-11
+### Fixed
+- Potential timimg problem of NimBLE cleanup after client disconnection
+### Changed
+- Advertised name (SIM32) and Scan Response name are now the same, to eliminate confusion during pairing
+### Added
+- Extra debugging to trace handling of Write requests 
+  
 ## [3.0.0] - 2026-07-05
 ### Fixed
 
