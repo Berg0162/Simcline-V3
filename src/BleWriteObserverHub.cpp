@@ -49,6 +49,16 @@ void BleWriteObserverHub::observeWrite(
         return;
     }
 
+#ifdef DEBUG
+LOG("BleWriteObserverHub::observeWrite [%u] %s", static_cast<unsigned>(length), service.toString().c_str());
+
+Serial.print(" data:");
+for(size_t i = 0; i < length; ++i) {
+    Serial.printf(" %02X", data[i]);
+}
+Serial.println();
+#endif
+
     if(service.equals(UUID16_SVC_FITNESS_MACHINE) &&
        characteristic.equals(UUID16_FTMS_CONTROL_POINT)) {
         observeFTMSWriteRequest(data, length);
@@ -87,6 +97,10 @@ void BleWriteObserverHub::observeFTMSWriteRequest(const uint8_t* data, size_t le
         return;
     }
 
+#ifdef DEBUG
+LOG(" -> observeFTMSWriteRequest");
+#endif
+
     // FTMS Set Indoor Bike Simulation Parameters:
     // opcode + wind speed(2) + grade(2) + crr(1) + cw(1)
     if(length != 7 || data[0] != FTMS_OP_SET_INDOOR_BIKE_SIMULATION_PARAMETERS) {
@@ -107,6 +121,10 @@ void BleWriteObserverHub::observeWahooControlPointWrite(const uint8_t* data, siz
         return;
     }
 
+#ifdef DEBUG
+LOG(" -> observeWahooControlPointWrite");
+#endif
+
     // Wahoo proprietary CPS control point: opcode + parameters.
     // Opcode 0x46 is Set Simulation Grade, with a uint16 parameter mapped to
     // -100.0% .. +100.0%.
@@ -125,6 +143,10 @@ void BleWriteObserverHub::observeTacxFecTxdWrite(const uint8_t* data, size_t len
     if(data == nullptr || operations == nullptr) {
         return;
     }
+
+#ifdef DEBUG
+LOG(" -> observeTacxFecTxdWrite");
+#endif
 
     // TACX FE-C transports a generic 13-byte ANT+ packet:
     // header(4) + body(8) + checksum(1). Body[0] is the FE-C data page.
@@ -152,6 +174,10 @@ void BleWriteObserverHub::observeZwiftOldSyncRxWrite(const uint8_t* data, size_t
     if(data == nullptr || operations == nullptr) {
         return;
     }
+
+#ifdef DEBUG
+LOG(" -> observeZwiftOldSyncRxWrite");
+#endif
 
     if(length < 5) {
         return;
@@ -224,6 +250,10 @@ void BleWriteObserverHub::observeZwiftNewSyncRxWrite(const uint8_t* data, size_t
     if(data == nullptr || operations == nullptr) {
         return;
     }
+
+#ifdef DEBUG
+LOG(" -> observeZwiftNewSyncRxWrite");
+#endif
 
     if(length < 2 || data[0] != 0x04) {
         return;

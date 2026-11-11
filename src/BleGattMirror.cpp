@@ -12,7 +12,7 @@
 #define DEBUG
 #include "config/configDebug.h"
 #ifdef DEBUG
-//#define DEBUG_GATT_CREATE
+#define DEBUG_GATT_CREATE
 //#define DEBUG_SET_GAP_VALUES
 #endif
 
@@ -218,6 +218,12 @@ bool BleGattMirror::start()
     setState(BleGattMirrorState::Error);
     return false;
   }
+
+  // NimBLE may report the client disconnected before its internal GAP
+  // connection state has been fully cleared. Starting the local GATT server
+  // too early causes ble_gatts_add_svcs() to return BLE_HS_EBUSY and assert.
+  LOG("BleGattMirror: Waiting for NimBLE disconnect cleanup");
+  delay(250);
 
   if(pServer && !pServer->start()) {
     LOG("BleGattMirror: Failed to start GATT server");
@@ -514,7 +520,10 @@ bool BleGattMirror::addAdvertisedServices()
   // Primary advertising uses a short name. Scan response carries the trainer
   // GAP name and, when present, only the first advertised 128-bit service UUID.
   NimBLEAdvertisementData scanResp;
-  std::string scanName = gapDeviceName;
+  /* Changed to avoid misunderstandings when Zwift is pairing...
+  std::string scanName = gapDeviceName; 
+  */
+  std::string scanName = ADVERTISED_SHORT_NAME;
   bool scanNameIsComplete = true;
 
   if(hasUuid128 && scanName.length() > 11) {
