@@ -84,9 +84,13 @@ Serial.println();
     }
 
     if(service.equals(ZWIFT_NEW_SERVICE_UUID) &&
-       characteristic.equals(ZWIFT_SYNCRX_CHARACTERISTIC_UUID)) {
-        observeZwiftNewSyncRxWrite(data, length);
-        return;
+        characteristic.equals(ZWIFT_SYNCRX_CHARACTERISTIC_UUID)) {
+            if(length > 0 && data[0] == 0x3F) { // Wahoo Kickr specific !! Test !!
+                observeZwiftOldSyncRxWrite(data, length);
+            } else {
+                observeZwiftNewSyncRxWrite(data, length);
+            }
+            return;
     }
 }
 
@@ -169,6 +173,7 @@ LOG(" -> observeTacxFecTxdWrite");
     operations->setNewGrade(grade);
 }
 
+// Handle very first generations that implemented ZVS with 128-bit UUID
 void BleWriteObserverHub::observeZwiftOldSyncRxWrite(const uint8_t* data, size_t length)
 {
     if(data == nullptr || operations == nullptr) {
@@ -183,12 +188,14 @@ LOG(" -> observeZwiftOldSyncRxWrite");
         return;
     }
 
-    // Accept either Wahoo Kickr or Zwift Hub legacy request
+    // Accept either Wahoo Kickr request (0x3F) or Zwift Hub One legacy request (0x04)
     if(data[0] != 0x3F && data[0] != 0x04) {
         return;
     }
 
-    // Zwift Hub legacy grade messages:
+    // Notice that Zwift implemented ZVS at first in the Zwift Hub One and redesigned it completely 
+    // in later versions! This is a One-Off,
+    // Zwift Hub One legacy road grade messages:
     // 8-bit  [04 22 02 10 xx]       scale 0.025%
     // 16-bit [04 22 03 10 xx xx]    scale 0.0025%
     if(data[0] == 0x04 && data[1] == 0x22 && data[3] == 0x10) {
@@ -212,12 +219,12 @@ LOG(" -> observeZwiftOldSyncRxWrite");
         return;
     }
 
-    // Restrict further decoding to ID (0x3F)
+    // Restrict further decoding to ID (0x3F) -> Wahoo Kickr request
     if(data[0] != 0x3F) {
         return;
     }
 
-    // Wahoo Kickr a.o.: Set Simulation Parameter
+    // Wahoo Kickr request with Road value at tag == 0x28
     size_t offset = 1;
     while(offset < length) {
         const uint8_t tag = data[offset++];
@@ -233,7 +240,7 @@ LOG(" -> observeZwiftOldSyncRxWrite");
         }
         offset += consumed;
 
-        // Wahoo Kickr legacy road grade. Value is ZigZag-encoded and scaled in 0.01%.
+        // Wahoo Kickr road grade. Value is ZigZag-encoded and scaled in 0.01%.
         if(tag == 0x28) {
             int64_t zwiftGrade = static_cast<int64_t>(uval);
             zwiftGrade = (zwiftGrade >> 1) ^ -(zwiftGrade & 1);
