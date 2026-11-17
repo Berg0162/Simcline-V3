@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [3.0.3] - 2026-11-17
+### Fixed
+- Replaced write decoding (of road inlination) with more robust functions and logic in BleWriteObserverHub::observeWrite
+### Changed
+### Added
+
 ## [3.0.2] - 2026-11-14
 ### Fixed
 - Quick fix of decoding properly Wahoo Kickr Core in BleWriteObserverHub::observeWrite
