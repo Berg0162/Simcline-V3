@@ -59,6 +59,7 @@ private:
     void observeFTMSWriteRequest(const uint8_t* data, size_t length);
     void observeTacxFecTxdWrite(const uint8_t* data, size_t length);
     void observeWahooControlPointWrite(const uint8_t* data, size_t length);
-    void observeZwiftOldSyncRxWrite(const uint8_t* data, size_t length);
-    void observeZwiftNewSyncRxWrite(const uint8_t* data, size_t length);
+    void observeZwiftOldSyncRxWriteHubOne(const uint8_t* data, size_t length);
+    void observeZwiftSyncRxWriteMessage3F(const uint8_t* data, size_t length);
+    void observeZwiftSyncRxWriteMessage04(const uint8_t* data, size_t length);
 };

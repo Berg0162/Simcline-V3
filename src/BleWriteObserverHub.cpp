@@ -25,6 +25,78 @@
 #define DEBUG
 #include "config/configDebug.h"
 
+namespace
+{
+bool readProtobufVarint(
+    const uint8_t* data,
+    size_t length,
+    size_t& offset,
+    uint64_t& value)
+{
+    if(data == nullptr || offset >= length) {
+        return false;
+    }
+
+    const size_t consumed =
+        bfs::DecodeUleb128(data + offset, length - offset, &value);
+
+    if(consumed == 0 || consumed > length - offset) {
+        return false;
+    }
+
+    offset += consumed;
+    return true;
+}
+
+bool skipProtobufField(
+    const uint8_t* data,
+    size_t length,
+    size_t& offset,
+    uint8_t wireType)
+{
+    uint64_t value = 0;
+
+    switch(wireType) {
+        case 0: // Varint
+            return readProtobufVarint(data, length, offset, value);
+
+        case 1: // 64-bit value
+            if(length - offset < 8) {
+                return false;
+            }
+            offset += 8;
+            return true;
+
+        case 2: // Length-delimited value
+            if(!readProtobufVarint(data, length, offset, value)) {
+                return false;
+            }
+            if(value > length - offset) {
+                return false;
+            }
+            offset += static_cast<size_t>(value);
+            return true;
+
+        case 5: // 32-bit value
+            if(length - offset < 4) {
+                return false;
+            }
+            offset += 4;
+            return true;
+
+        default:
+            // Groups and invalid wire types are unsupported.
+            return false;
+    }
+}
+
+int64_t decodeProtobufZigZag64(uint64_t value)
+{
+    return static_cast<int64_t>(value >> 1) ^
+           -static_cast<int64_t>(value & 1U);
+}
+} // namespace
+
 // Constructor
 BleWriteObserverHub::BleWriteObserverHub() 
 {
@@ -79,19 +151,29 @@ Serial.println();
 
     if(service.equals(ZWIFT_OLD_SERVICE_UUID) &&
        characteristic.equals(ZWIFT_SYNCRX_CHARACTERISTIC_UUID)) {
-        observeZwiftOldSyncRxWrite(data, length);
+        if(length > 0 && data[0] == 0x04) {
+            observeZwiftOldSyncRxWriteHubOne(data, length);
+            return;
+        } 
+        if(length > 0 && data[0] == 0x3F) {
+            observeZwiftSyncRxWriteMessage3F(data, length);
+            return;
+        }
         return;
     }
 
     if(service.equals(ZWIFT_NEW_SERVICE_UUID) &&
         characteristic.equals(ZWIFT_SYNCRX_CHARACTERISTIC_UUID)) {
-            if(length > 0 && data[0] == 0x3F) { // Wahoo Kickr specific !! Test !!
-                observeZwiftOldSyncRxWrite(data, length);
-            } else {
-                observeZwiftNewSyncRxWrite(data, length);
+            if(length > 0 && data[0] == 0x3F) { 
+                observeZwiftSyncRxWriteMessage3F(data, length);
+                return;
             }
-            return;
-    }
+            // The last write to test
+            if(length > 0 && data[0] == 0x04) {
+                observeZwiftSyncRxWriteMessage04(data, length);
+                return;
+            }
+        }
 }
 
 // Shortest version
@@ -173,23 +255,19 @@ LOG(" -> observeTacxFecTxdWrite");
     operations->setNewGrade(grade);
 }
 
-// Handle very first generations that implemented ZVS with 128-bit UUID
-void BleWriteObserverHub::observeZwiftOldSyncRxWrite(const uint8_t* data, size_t length)
+// Handle very first generation trainer (Zwift Hub One) that implemented ZVS with 128-bit UUID
+void BleWriteObserverHub::observeZwiftOldSyncRxWriteHubOne(const uint8_t* data, size_t length)
 {
     if(data == nullptr || operations == nullptr) {
         return;
     }
 
 #ifdef DEBUG
-LOG(" -> observeZwiftOldSyncRxWrite");
+LOG(" -> observeZwiftOldSyncRxWriteHubOne");
 #endif
 
-    if(length < 5) {
-        return;
-    }
-
-    // Accept either Wahoo Kickr request (0x3F) or Zwift Hub One legacy request (0x04)
-    if(data[0] != 0x3F && data[0] != 0x04) {
+    // Accept Zwift Hub One legacy request (0x04)
+    if(length < 5 || data[0] != 0x04) {
         return;
     }
 
@@ -218,48 +296,130 @@ LOG(" -> observeZwiftOldSyncRxWrite");
         }
         return;
     }
-
-    // Restrict further decoding to ID (0x3F) -> Wahoo Kickr request
-    if(data[0] != 0x3F) {
-        return;
-    }
-
-    // Wahoo Kickr request with Road value at tag == 0x28
-    size_t offset = 1;
-    while(offset < length) {
-        const uint8_t tag = data[offset++];
-        if(offset >= length) {
-            break;
-        }
-
-        uint64_t uval = 0;
-        const size_t consumed = bfs::DecodeUleb128(data + offset, length - offset, &uval);
-        // Invalid or truncated ULEB128 → abort safely
-        if(consumed == 0 || offset + consumed > length) {
-            break;
-        }
-        offset += consumed;
-
-        // Wahoo Kickr road grade. Value is ZigZag-encoded and scaled in 0.01%.
-        if(tag == 0x28) {
-            int64_t zwiftGrade = static_cast<int64_t>(uval);
-            zwiftGrade = (zwiftGrade >> 1) ^ -(zwiftGrade & 1);
-            const float grade = static_cast<float>(zwiftGrade) / 100.0f;
-            operations->setNewGrade(grade);
-        }
-
-        // Tag 0x38 carries gear ratio and is intentionally ignored here.
-    }
 }
 
-void BleWriteObserverHub::observeZwiftNewSyncRxWrite(const uint8_t* data, size_t length)
+void BleWriteObserverHub::observeZwiftSyncRxWriteMessage3F(const uint8_t* data, size_t length)
 {
     if(data == nullptr || operations == nullptr) {
         return;
     }
 
 #ifdef DEBUG
-LOG(" -> observeZwiftNewSyncRxWrite");
+    LOG(" -> observeZwiftSyncRxWriteMessage3F");
+#endif
+
+    // Restrict decoding to Message ID 0x3F.
+    if(length < 2 || data[0] != 0x3F) {
+        return;
+    }
+
+    size_t outerOffset = 1;
+
+    while(outerOffset < length) {
+        uint64_t outerKey = 0;
+
+        if(!readProtobufVarint(data, length, outerOffset, outerKey) ||
+           outerKey == 0) {
+            return;
+        }
+
+        const uint32_t fieldNumber =
+            static_cast<uint32_t>(outerKey >> 3);
+        const uint8_t wireType =
+            static_cast<uint8_t>(outerKey & 0x07);
+
+        // Outer field 4 (key 0x22) contains the nested control message.
+        if(fieldNumber == 4 && wireType == 2) {
+            uint64_t nestedLength64 = 0;
+
+            if(!readProtobufVarint(
+                    data,
+                    length,
+                    outerOffset,
+                    nestedLength64)) {
+                return;
+            }
+
+            if(nestedLength64 > length - outerOffset) {
+                return;
+            }
+
+            const size_t nestedLength =
+                static_cast<size_t>(nestedLength64);
+            const uint8_t* nestedData = data + outerOffset;
+            size_t nestedOffset = 0;
+
+            while(nestedOffset < nestedLength) {
+                uint64_t nestedKey = 0;
+
+                if(!readProtobufVarint(
+                        nestedData,
+                        nestedLength,
+                        nestedOffset,
+                        nestedKey) ||
+                        nestedKey == 0) {
+                    return;
+                }
+
+                const uint32_t nestedFieldNumber =
+                    static_cast<uint32_t>(nestedKey >> 3);
+                const uint8_t nestedWireType =
+                    static_cast<uint8_t>(nestedKey & 0x07);
+
+                // Nested field 5 (key 0x28) contains road grade.
+                if(nestedFieldNumber == 5 && nestedWireType == 0) {
+                    uint64_t encodedGrade = 0;
+
+                    if(!readProtobufVarint(
+                            nestedData,
+                            nestedLength,
+                            nestedOffset,
+                            encodedGrade)) {
+                        return;
+                    }
+
+                    // Grade is ZigZag-encoded and scaled in units of 0.01%.
+                    const int64_t rawGrade =
+                        decodeProtobufZigZag64(encodedGrade);
+                    const float grade =
+                        static_cast<float>(rawGrade) / 100.0f;
+
+                    operations->setNewGrade(grade);
+                    return;
+                }
+
+                if(!skipProtobufField(
+                        nestedData,
+                        nestedLength,
+                        nestedOffset,
+                        nestedWireType)) {
+                    return;
+                }
+            }
+
+            // The complete nested field has been inspected.
+            outerOffset += nestedLength;
+            continue;
+        }
+
+        if(!skipProtobufField(
+                data,
+                length,
+                outerOffset,
+                wireType)) {
+            return;
+        }
+    }
+}
+
+void BleWriteObserverHub::observeZwiftSyncRxWriteMessage04(const uint8_t* data, size_t length)
+{
+    if(data == nullptr || operations == nullptr) {
+        return;
+    }
+
+#ifdef DEBUG
+LOG(" -> observeZwiftSyncRxWriteMessage04");
 #endif
 
     if(length < 2 || data[0] != 0x04) {

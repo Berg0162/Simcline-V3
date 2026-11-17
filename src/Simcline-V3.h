@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <string.h>
 
-static const char* CODE_VERSION = "3.0.2";
+static const char* CODE_VERSION = "3.0.3";
 
 // SIMCLINE HEADER FILE----------------------------------------------------------------------------
 // Include these debug utility macros in all cases!
