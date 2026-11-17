@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Missing inclination decoding
 ### Changed
-- Replaced write decoding (of road inlination) with more robust functions and logic in BleWriteObserverHub::observeWrite
+- Replaced write decoding (of road inclination) with more robust functions and logic in BleWriteObserverHub::observeWrite
 ### Added
 
 ## [3.0.2] - 2026-11-14
