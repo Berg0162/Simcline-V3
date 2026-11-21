@@ -168,7 +168,9 @@ Serial.println();
                 observeZwiftSyncRxWriteMessage3F(data, length);
                 return;
             }
-            // The last write to test
+            // Final test: Zwift ZAP protocol used with the original Zwift Custom Service,
+            // 0x04 is the documented ZAP TRAINER_CONFIG_SET opcode, client-to-trainer 
+            // configuration command
             if(length > 0 && data[0] == 0x04) {
                 observeZwiftSyncRxWriteMessage04(data, length);
                 return;
@@ -419,40 +421,101 @@ void BleWriteObserverHub::observeZwiftSyncRxWriteMessage04(const uint8_t* data, 
     }
 
 #ifdef DEBUG
-LOG(" -> observeZwiftSyncRxWriteMessage04");
+    LOG(" -> observeZwiftSyncRxWriteMessage04");
 #endif
 
+    // Restrict decoding to ZAP TRAINER_CONFIG_SET (0x04).
     if(length < 2 || data[0] != 0x04) {
         return;
     }
 
-    const uint8_t messageType = data[1];
-    size_t offset = 1;
+    size_t outerOffset = 1;
 
-    while(offset < length) {
-        const uint8_t tag = data[offset++];
-        if(offset >= length) {
-            break;
-        }
+    while(outerOffset < length) {
+        uint64_t outerKey = 0;
 
-        uint64_t uval = 0;
-        const size_t consumed = bfs::DecodeUleb128(data + offset, length - offset, &uval);
-        if(consumed == 0 || offset + consumed > length) {
-            break;
-        }
-        offset += consumed;
-
-        // New Zwift virtual shifting road grade message. The grade value is
-        // ZigZag-encoded and scaled in 0.01%.
-        if(messageType == 0x22 && tag == 0x10) {
-            int64_t zwiftGrade = static_cast<int64_t>(uval);
-            zwiftGrade = (zwiftGrade >> 1) ^ -(zwiftGrade & 1);
-            const float grade = static_cast<float>(zwiftGrade) / 100.0f;
-            operations->setNewGrade(grade);
+        if(!readProtobufVarint(data, length, outerOffset, outerKey) ||
+           outerKey == 0) {
             return;
         }
 
-        // Message type 0x2A / tag 0x10 carries gear ratio. It is intentionally
-        // ignored here until virtual shifting needs an application-side sink.
+        const uint32_t fieldNumber = static_cast<uint32_t>(outerKey >> 3);
+        const uint8_t wireType = static_cast<uint8_t>(outerKey & 0x07);
+
+        // HubCommand field 4 (key 0x22) contains SimulationParam.
+        if(fieldNumber == 4 && wireType == 2) {
+            uint64_t nestedLength64 = 0;
+
+            if(!readProtobufVarint(
+                    data,
+                    length,
+                    outerOffset,
+                    nestedLength64)) {
+                return;
+            }
+
+            if(nestedLength64 > length - outerOffset) {
+                return;
+            }
+
+            const size_t nestedLength = static_cast<size_t>(nestedLength64);
+            const uint8_t* nestedData = data + outerOffset;
+            size_t nestedOffset = 0;
+
+            while(nestedOffset < nestedLength) {
+                uint64_t nestedKey = 0;
+
+                if(!readProtobufVarint(
+                        nestedData,
+                        nestedLength,
+                        nestedOffset,
+                        nestedKey) ||
+                   nestedKey == 0) {
+                    return;
+                }
+
+                const uint32_t nestedFieldNumber = static_cast<uint32_t>(nestedKey >> 3);
+                const uint8_t nestedWireType = static_cast<uint8_t>(nestedKey & 0x07);
+
+                // SimulationParam field 2 (key 0x10) is ZigZag inclination
+                // scaled in units of 0.01%.
+                if(nestedFieldNumber == 2 && nestedWireType == 0) {
+                    uint64_t encodedGrade = 0;
+
+                    if(!readProtobufVarint(
+                            nestedData,
+                            nestedLength,
+                            nestedOffset,
+                            encodedGrade)) {
+                        return;
+                    }
+
+                    const int64_t rawGrade = decodeProtobufZigZag64(encodedGrade);
+                    const float grade = static_cast<float>(rawGrade) / 100.0f;
+
+                    operations->setNewGrade(grade);
+                    return;
+                }
+
+                if(!skipProtobufField(
+                        nestedData,
+                        nestedLength,
+                        nestedOffset,
+                        nestedWireType)) {
+                    return;
+                }
+            }
+
+            outerOffset += nestedLength;
+            continue;
+        }
+
+        if(!skipProtobufField(
+                data,
+                length,
+                outerOffset,
+                wireType)) {
+            return;
+        }
     }
 }

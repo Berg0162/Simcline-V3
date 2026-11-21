@@ -13,13 +13,66 @@
 #include "config/configDebug.h"
 #ifdef DEBUG
 #define DEBUG_GATT_CREATE
-//#define DEBUG_SET_GAP_VALUES
+#define DEBUG_SET_GAP_VALUES
 #endif
 
 #define UUID16_SVC_GENERIC_ACCESS    NimBLEUUID((uint16_t)0x1800)
 #define UUID16_SVC_GENERIC_ATTRIBUTE NimBLEUUID((uint16_t)0x1801)
 #define UUID16_CHR_DEVICE_NAME       NimBLEUUID((uint16_t)0x2A00)
 #define UUID16_CHR_APPEARANCE        NimBLEUUID((uint16_t)0x2A01)
+
+namespace
+{
+bool isGapNameWhitespace(char value)
+{
+  return value == ' ' || value == '\t' || value == '\r' || value == '\n';
+}
+
+std::string makeMitmGapDeviceName(const std::string& trainerName)
+{
+  const std::string marker = ADVERTISED_SHORT_NAME;
+
+  size_t end = trainerName.length();
+  while(end > 0 && isGapNameWhitespace(trainerName[end - 1])) {
+    --end;
+  }
+
+  if(end == 0) {
+    return marker;
+  }
+
+  size_t finalTokenStart = end;
+  while(finalTokenStart > 0 &&
+        !isGapNameWhitespace(trainerName[finalTokenStart - 1])) {
+    --finalTokenStart;
+  }
+
+  const std::string finalToken =
+    trainerName.substr(finalTokenStart, end - finalTokenStart);
+
+  // Applying the transformation more than once must not change the name.
+  if(finalToken == marker) {
+    return trainerName.substr(0, end);
+  }
+
+  // A single-token value cannot be split into name/model and serial safely.
+  // Preserve that token as the device name and append the MITM marker.
+  if(finalTokenStart == 0) {
+    return trainerName.substr(0, end) + " " + marker;
+  }
+
+  size_t prefixEnd = finalTokenStart;
+  while(prefixEnd > 0 && isGapNameWhitespace(trainerName[prefixEnd - 1])) {
+    --prefixEnd;
+  }
+
+  if(prefixEnd == 0) {
+    return marker;
+  }
+
+  return trainerName.substr(0, prefixEnd) + " " + marker;
+}
+} // namespace
 
 NimBLEServer* BleGattMirror::pServer = nullptr;
 
@@ -520,13 +573,13 @@ bool BleGattMirror::addAdvertisedServices()
   // Primary advertising uses a short name. Scan response carries the trainer
   // GAP name and, when present, only the first advertised 128-bit service UUID.
   NimBLEAdvertisementData scanResp;
-  /* Changed to avoid misunderstandings when Zwift is pairing...
+
+  /**** Potential misunderstandings when Zwift is pairing... ****/
   std::string scanName = gapDeviceName; 
-  */
-  std::string scanName = ADVERTISED_SHORT_NAME;
+  
   bool scanNameIsComplete = true;
 
-  if(hasUuid128 && scanName.length() > 11) {
+  if(hasUuid128 && scanName.length() > 11) { // more than 14 --> no space for uuuid128 !!
     scanName = scanName.substr(0, 11);
     scanNameIsComplete = false;
   }
@@ -640,8 +693,8 @@ void BleGattMirror::refreshGapValues()
   // These setters keep NimBLE's built-in GAP service aligned with the trainer
   // for the two values that NimBLE allows us to update safely at runtime.
   std::string value;
-  if(backend->readCharacteristic(UUID16_SVC_GENERIC_ACCESS, UUID16_CHR_DEVICE_NAME, value) && !value.empty()) {
-    gapDeviceName = value;
+  if(backend->readCharacteristic(UUID16_SVC_GENERIC_ACCESS, UUID16_CHR_DEVICE_NAME, value)) {
+    gapDeviceName = makeMitmGapDeviceName(value);
     if(NimBLEDevice::setDeviceName(gapDeviceName)) {
 #ifdef DEBUG_SET_GAP_VALUES
       LOG("BleGattMirror: Set GAP DeviceName to [%s]", gapDeviceName.c_str());
