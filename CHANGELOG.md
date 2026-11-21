@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [3.0.3] - 2026-11-21
+### Fixed
+- Missing SIM32 reference in Zwift pairing windows has been addressed in BleGattMirror, it should now show like `<Your Trainer> SIM32`
+### Changed
+- Further finetuning of write decoding (of road inclination) in BleWriteObserverHub::observeWrite
+### Added
+
 ## [3.0.3] - 2026-11-17
 ### Fixed
 - Missing inclination decoding
